@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="es" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Servitec Gamarra — App Store & Hub de Ingeniería</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Plus+Jakarta+Sans:wght@600;700&display=swap" rel="stylesheet">
+    <!-- Tailwind CSS v3 via CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#4B5320',      // Verde Oliva / Olive Military
+                        accent: '#FF5722',       // Naranja Vibrante / Electric Orange
+                        accentHover: '#E64A19',
+                        charcoal: '#1E2022',     // Carbón Técnico
+                        skyTech: '#E8F1F5',      // Azul Cielo Lavado
+                        pureWhite: '#FFFFFF'     // Blanco Pulcro
+                    },
+                    fontFamily: {
+                        display: ['"Plus Jakarta Sans"', 'sans-serif'],
+                        sans: ['Inter', 'sans-serif']
+                    }
+                }
+            }
+        }
+    </script>
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="./assets/css/custom.css">
+</head>
+<body class="bg-skyTech text-charcoal font-sans antialiased min-h-screen flex flex-col justify-between selection:bg-accent selection:text-white">
+
+    <!-- HEADER / NAVBAR -->
+    <header class="sticky top-0 z-40 bg-pureWhite/90 backdrop-blur-md border-b border-primary/10 shadow-sm">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+            
+            <!-- Logo & Brand -->
+            <a href="#" class="flex items-center gap-3 group">
+                <div class="w-10 h-10 rounded-xl bg-primary flex items-center justify-center text-pureWhite shadow-sm group-hover:bg-primary/90 transition-colors">
+                    <!-- Isotipo "El Circuito Táctico" -->
+                    <svg class="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"/>
+                        <circle cx="12" cy="12" r="3"/>
+                    </svg>
+                </div>
+                <div>
+                    <span class="font-display font-bold text-lg sm:text-xl text-charcoal tracking-tight block leading-tight">Servitec Gamarra</span>
+                    <span class="text-xs font-medium text-primary uppercase tracking-wider block">App Store & Hub</span>
+                </div>
+            </a>
+
+            <!-- Search Bar (Desktop) -->
+            <div class="hidden md:flex items-center flex-1 max-w-md mx-8">
+                <div class="relative w-full">
+                    <span class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-primary/60">
+                        <i data-lucide="search" class="w-4 h-4"></i>
+                    </span>
+                    <input type="text" id="searchInput" placeholder="Buscar apps, landings, documentos..." 
+                        class="w-full pl-10 pr-4 py-2 bg-skyTech/60 border border-primary/20 rounded-xl text-sm text-charcoal placeholder-charcoal/50 focus:outline-none focus:border-accent focus:ring-1 focus:ring-accent transition-all">
+                </div>
+            </div>
+
+            <!-- Actions / Badge -->
+            <div class="flex items-center gap-3">
+                <span class="hidden sm:inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-semibold bg-primary/10 text-primary border border-primary/20">
+                    <span class="w-2 h-2 rounded-full bg-accent animate-pulse"></span>
+                    Producción Activa
+                </span>
+            </div>
+        </div>
+
+        <!-- Mobile Search Bar -->
+        <div class="md:hidden px-4 pb-3 pt-1 border-t border-primary/5 bg-pureWhite">
+            <div class="relative w-full">
+                <span class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-primary/60">
+                    <i data-lucide="search" class="w-4 h-4"></i>
+                </span>
+                <input type="text" id="searchInputMobile" placeholder="Buscar apps, landings, documentos..." 
+                    class="w-full pl-10 pr-4 py-2 bg-skyTech/60 border border-primary/20 rounded-xl text-sm text-charcoal placeholder-charcoal/50 focus:outline-none focus:border-accent focus:ring-1 focus:ring-accent transition-all">
+            </div>
+        </div>
+    </header>
+
+    <!-- MAIN CONTENT -->
+    <main class="flex-1 max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-8">
+        
+        <!-- Hero Section -->
+        <section class="mb-10 text-center sm:text-left">
+            <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 bg-pureWhite p-6 sm:p-8 rounded-2xl border border-primary/10 shadow-sm">
+                <div>
+                    <h1 class="font-display font-bold text-2xl sm:text-3xl text-charcoal mb-2">Repositorio Oficial de Ingeniería</h1>
+                    <p class="text-charcoal/70 text-sm sm:text-base max-w-2xl">
+                        Descarga directa de APKs optimizadas, documentación técnica y accesos rápidos a nuestros desarrollos mientras completan sus procesos oficiales en tiendas.
+                    </p>
+                </div>
+                <div class="flex-shrink-0">
+                    <div class="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-skyTech text-primary text-xs font-semibold border border-primary/20">
+                        <i data-lucide="shield-check" class="w-4 h-4 text-accent"></i>
+                        Binarios Verificados
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Category Filter Tabs -->
+        <section class="mb-8">
+            <div id="categoryTabs" class="flex items-center gap-2 overflow-x-auto pb-2 scrollbar-none">
+                <button data-category="todos" class="category-tab active px-4 py-2 rounded-xl text-sm font-semibold whitespace-nowrap transition-all bg-primary text-pureWhite shadow-sm">
+                    Todos los Proyectos
+                </button>
+                <button data-category="Apps Android" class="category-tab px-4 py-2 rounded-xl text-sm font-semibold whitespace-nowrap transition-all bg-pureWhite text-charcoal/70 border border-primary/10 hover:border-primary/40 hover:text-charcoal">
+                    Apps Android
+                </button>
+                <button data-category="Web & Landings" class="category-tab px-4 py-2 rounded-xl text-sm font-semibold whitespace-nowrap transition-all bg-pureWhite text-charcoal/70 border border-primary/10 hover:border-primary/40 hover:text-charcoal">
+                    Web & Landings
+                </button>
+                <button data-category="Documentos" class="category-tab px-4 py-2 rounded-xl text-sm font-semibold whitespace-nowrap transition-all bg-pureWhite text-charcoal/70 border border-primary/10 hover:border-primary/40 hover:text-charcoal">
+                    Documentos
+                </button>
+            </div>
+        </section>
+
+        <!-- Grid Container -->
+        <section>
+            <div id="catalogGrid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                <!-- Tarjetas inyectadas dinámicamente mediante app.js -->
+            </div>
+
+            <!-- Empty State (Hidden por defecto) -->
+            <div id="emptyState" class="hidden text-center py-16 px-4 bg-pureWhite rounded-2xl border border-primary/10 my-8">
+                <div class="w-16 h-16 bg-skyTech text-primary rounded-2xl flex items-center justify-center mx-auto mb-4">
+                    <i data-lucide="folder-search" class="w-8 h-8"></i>
+                </div>
+                <h3 class="font-display font-bold text-lg text-charcoal mb-1">No se encontraron resultados</h3>
+                <p class="text-charcoal/60 text-sm max-w-sm mx-auto mb-6">Intenta ajustando los términos de búsqueda o cambiando de categoría.</p>
+                <button id="resetFilters" class="px-4 py-2 rounded-xl bg-accent text-white text-sm font-semibold hover:bg-accentHover transition-colors">
+                    Ver todos los proyectos
+                </button>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="bg-pureWhite border-t border-primary/10 mt-12 py-8">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-center sm:text-left">
+            <div class="flex items-center gap-3">
+                <div class="w-8 h-8 rounded-lg bg-primary flex items-center justify-center text-pureWhite">
+                    <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"/>
+                        <circle cx="12" cy="12" r="3"/>
+                    </svg>
+                </div>
+                <span class="font-display font-bold text-charcoal text-sm">Servitec Gamarra — Ingeniería Informática</span>
+            </div>
+            <p class="text-xs text-charcoal/60">
+                Soluciones digitales de alto rendimiento. Todos los derechos reservados.
+            </p>
+        </div>
+    </footer>
+
+    <!-- DETAIL MODAL -->
+    <div id="detailModal" class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-charcoal/60 backdrop-blur-sm opacity-0 pointer-events-none transition-opacity duration-300">
+        <div id="modalContainer" class="bg-pureWhite w-full max-w-2xl rounded-2xl shadow-xl border border-primary/10 overflow-hidden transform scale-95 transition-transform duration-300 max-h-[90vh] flex flex-col">
+            
+            <!-- Modal Header -->
+            <div class="p-6 border-b border-primary/10 flex items-start justify-between bg-skyTech/40">
+                <div class="flex items-center gap-4">
+                    <img id="modalIcon" src="" alt="Icon" class="w-14 h-14 rounded-2xl object-cover bg-skyTech border border-primary/20 shadow-sm" onerror="this.src='./assets/brand/logo-circuit-g.svg'">
+                    <div>
+                        <span id="modalCategory" class="text-xs font-semibold text-primary uppercase tracking-wider block mb-1"></span>
+                        <h2 id="modalTitle" class="font-display font-bold text-xl text-charcoal"></h2>
+                    </div>
+                </div>
+                <button id="closeModal" class="w-9 h-9 rounded-xl bg-pureWhite border border-primary/10 text-charcoal/70 hover:text-charcoal hover:bg-skyTech flex items-center justify-center transition-colors">
+                    <i data-lucide="x" class="w-5 h-5"></i>
+                </button>
+            </div>
+
+            <!-- Modal Body (Scrollable) -->
+            <div class="p-6 overflow-y-auto space-y-6 flex-1">
+                
+                <!-- Description -->
+                <div>
+                    <h3 class="text-xs font-semibold text-primary uppercase tracking-wider mb-2">Descripción General</h3>
+                    <p id="modalDescription" class="text-charcoal/80 text-sm leading-relaxed"></p>
+                </div>
+
+                <!-- Screenshots Carousel -->
+                <div id="screenshotsSection">
+                    <h3 class="text-xs font-semibold text-primary uppercase tracking-wider mb-2">Capturas de Pantalla</h3>
+                    <div id="modalScreenshots" class="flex gap-3 overflow-x-auto pb-2 scrollbar-clean">
+                        <!-- Inyectado dinámicamente -->
+                    </div>
+                </div>
+
+                <!-- Technical Specs Table -->
+                <div>
+                    <h3 class="text-xs font-semibold text-primary uppercase tracking-wider mb-2">Especificaciones Técnicas</h3>
+                    <div class="bg-skyTech/50 rounded-xl p-4 border border-primary/10 grid grid-cols-2 sm:grid-cols-4 gap-4 text-xs">
+                        <div>
+                            <span class="text-charcoal/50 block mb-0.5 font-medium">Versión</span>
+                            <span id="modalVersion" class="font-semibold text-charcoal text-sm"></span>
+                        </div>
+                        <div>
+                            <span class="text-charcoal/50 block mb-0.5 font-medium">Tamaño</span>
+                            <span id="modalSize" class="font-semibold text-charcoal text-sm"></span>
+                        </div>
+                        <div>
+                            <span class="text-charcoal/50 block mb-0.5 font-medium">Actualizado</span>
+                            <span id="modalDate" class="font-semibold text-charcoal text-sm"></span>
+                        </div>
+                        <div>
+                            <span class="text-charcoal/50 block mb-0.5 font-medium">Plataforma</span>
+                            <span id="modalPlatform" class="font-semibold text-charcoal text-sm">Android / Web</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Android Installation Guide (Only for android-apk) -->
+                <div id="androidGuide" class="hidden bg-amber-50 border border-amber-200 rounded-xl p-4 text-xs space-y-2">
+                    <div class="flex items-center gap-2 font-semibold text-amber-900">
+                        <i data-lucide="alert-circle" class="w-4 h-4 text-amber-600"></i>
+                        Guía rápida para instalar APKs en Android
+                    </div>
+                    <ol class="list-decimal list-inside text-amber-800 space-y-1 pl-1">
+                        <li>Descarga el archivo APK pulsando el botón inferior.</li>
+                        <li>Abre el archivo descargado desde las notificaciones o tu explorador de archivos.</li>
+                        <li>Si tu dispositivo advierte sobre orígenes desconocidos, pulsa <strong>"Configuración"</strong> y habilita <strong>"Permitir desde esta fuente"</strong> o pulsa <strong>"Instalar de todas formas"</strong>.</li>
+                    </ol>
+                </div>
+
+            </div>
+
+            <!-- Modal Footer / CTA -->
+            <div class="p-6 border-t border-primary/10 bg-skyTech/40 flex items-center justify-end gap-3">
+                <button id="closeModalBtn" class="px-5 py-2.5 rounded-xl bg-pureWhite border border-primary/20 text-charcoal text-sm font-semibold hover:bg-skyTech transition-colors">
+                    Cerrar
+                </button>
+                <a id="modalDownloadBtn" href="#" target="_blank" class="inline-flex items-center gap-2 px-6 py-2.5 rounded-xl bg-accent text-white text-sm font-semibold hover:bg-accentHover shadow-sm transition-all">
+                    <i id="modalDownloadIcon" data-lucide="download" class="w-4 h-4"></i>
+                    <span id="modalDownloadText">Descargar APK</span>
+                </a>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- Main JS -->
+    <script src="./assets/js/app.js"></script>
+</body>
+</html>
