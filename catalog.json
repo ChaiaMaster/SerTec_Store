@@ -9,7 +9,7 @@
     "size": "96.8 MB",
     "updatedAt": "15 Nov 2026",
     "description": "Aplicación Android orientada a salvaguardar tu información de manera automatizada aprovechando la infraestructura de Telegram. Permite respaldar archivos multimedia, documentos y bases de datos locales de forma segura, rápida y sin depender de suscripciones de almacenamiento tradicionales.",
-    "downloadUrl": "https://github.com/ChaiaMaster/TeleBackup/releases/download/V.1.0/TeleBackup.apk"
+    "downloadUrl": "https://github.com/ChaiaMaster/TeleBackup/releases/download/V.1.0/TeleBackup.apk",
     "icon": "./assets/media/icons/telebackup.webp"
   },
   {
@@ -22,7 +22,8 @@
     "size": "142.0 MB",
     "updatedAt": "15 Nov 2026",
     "description": "Olvídate de los registros dispersos. Controla historiales médicos, pesajes, dietas y tratamientos veterinarios de cada ejemplar en tiempo real.",
-    "downloadUrl": "https://github.com/ChaiaMaster/SerTec_Store/releases/download/ZooTrack.v1/ZooTrack_1.0.apk"
+    "downloadUrl": "https://github.com/ChaiaMaster/SerTec_Store/releases/download/ZooTrack.v1/ZooTrack_1.0.apk",
+    "icon": ""
   },
   {
     "id": "al-bcv",
@@ -34,7 +35,7 @@
     "size": "105.2 MB",
     "updatedAt": "15 Nov 2026",
     "description": "Obtén la tasa oficial del Banco Central de Venezuela al instante y realiza conversiones rápidas incluso sin conexión gracias a su memoria caché inteligente.",
-    "downloadUrl": "https://github.com/ChaiaMaster/SerTec_Store/releases/download/v1.0/Al.BCV_1.0.apk"
+    "downloadUrl": "https://github.com/ChaiaMaster/SerTec_Store/releases/download/v1.0/Al.BCV_1.0.apk",
     "icon": "./assets/media/icons/AL_BCV_ico.png"
   },
   {
@@ -47,7 +48,8 @@
     "size": "124.8 MB",
     "updatedAt": "15 Nov 2026",
     "description": "Herramienta móvil desarrollada por Servitec Gamarra para optimizar procesos operativos diarios con velocidad y precisión.",
-    "downloadUrl": "https://github.com/TU-USUARIO/TU-REPO/releases/download/v1.0.0/app4.apk"
+    "downloadUrl": "https://github.com/TU-USUARIO/TU-REPO/releases/download/v1.0.0/app4.apk",
+    "icon": ""
   },
   {
     "id": "portal-mundo-safari",
@@ -59,7 +61,8 @@
     "size": "Web App",
     "updatedAt": "28 Oct 2026",
     "description": "Sitio web institucional con catálogo interactivo de especies, información operativa y diseño adaptado a cualquier pantalla.",
-    "downloadUrl": "https://mundosafarizoo.com"
+    "downloadUrl": "https://mundosafarizoo.com",
+    "icon": ""
   },
   {
     "id": "manual-3d",
@@ -71,6 +74,7 @@
     "size": "4.5 MB",
     "updatedAt": "15 Oct 2026",
     "description": "Protocolos prácticos de mantenimiento preventivo, calibración de extrusores y parámetros técnicos para impresión 3D de alto rendimiento.",
-    "downloadUrl": "https://github.com/TU-USUARIO/TU-REPO/releases/download/v1.0.0/manual-impresion-3d.pdf"
+    "downloadUrl": "https://github.com/TU-USUARIO/TU-REPO/releases/download/v1.0.0/manual-impresion-3d.pdf",
+    "icon": ""
   }
 ]
