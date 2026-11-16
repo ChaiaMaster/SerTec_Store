@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Servitec Gamarra — App Store & Hub de Ingeniería</title>
-    <!-- Google Fonts -->
+    <!-- Google Fonts: Plus Jakarta Sans & Inter -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Plus+Jakarta+Sans:wght@600;700&display=swap" rel="stylesheet">
@@ -32,76 +32,105 @@
     </script>
     <!-- Lucide Icons -->
     <script src="https://unpkg.com/lucide@latest"></script>
-    <!-- Custom CSS -->
-    <link rel="stylesheet" href="./assets/css/custom.css">
+    <style>
+        body {
+            background-color: #E8F1F5;
+            background-image: radial-gradient(rgba(75, 83, 32, 0.09) 1px, transparent 1px);
+            background-size: 20px 20px;
+        }
+        .project-card {
+            background-color: #FFFFFF;
+            border: 1px solid rgba(75, 83, 32, 0.16);
+            box-shadow: 0 4px 14px -2px rgba(30, 32, 34, 0.06);
+            transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1),
+                        box-shadow 0.2s cubic-bezier(0.16, 1, 0.3, 1),
+                        border-color 0.2s ease;
+        }
+        .project-card:hover {
+            transform: translateY(-4px);
+            border-color: #4B5320;
+            box-shadow: 0 14px 26px -6px rgba(75, 83, 32, 0.18);
+        }
+        .scrollbar-none::-webkit-scrollbar { display: none; }
+        .scrollbar-none { -ms-overflow-style: none; scrollbar-width: none; }
+        #detailModal { transition: opacity 0.25s ease-in-out; }
+        #modalContainer { transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1); }
+    </style>
 </head>
-<body class="bg-skyTech text-charcoal font-sans antialiased min-h-screen flex flex-col justify-between selection:bg-accent selection:text-white">
+<body class="text-charcoal font-sans antialiased min-h-screen flex flex-col justify-between selection:bg-accent selection:text-white">
 
     <!-- HEADER / NAVBAR -->
-    <header class="sticky top-0 z-40 bg-pureWhite/90 backdrop-blur-md border-b border-primary/10 shadow-sm">
+    <header class="sticky top-0 z-40 bg-pureWhite/95 backdrop-blur-md border-b border-primary/15 shadow-sm">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
             
-            <!-- Logo & Brand -->
+            <!-- Isotipo "El Circuito Táctico" + Marca -->
             <a href="#" class="flex items-center gap-3 group">
-                <div class="w-10 h-10 rounded-xl bg-primary flex items-center justify-center text-pureWhite shadow-sm group-hover:bg-primary/90 transition-colors">
-                    <!-- Isotipo "El Circuito Táctico" -->
-                    <svg class="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                        <path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"/>
-                        <circle cx="12" cy="12" r="3"/>
+                <div class="w-11 h-11 rounded-xl bg-primary flex items-center justify-center shadow-sm group-hover:bg-charcoal transition-colors">
+                    <svg class="w-7 h-7" viewBox="0 0 120 120" fill="none">
+                        <path d="M84 42H62V54H78V76H42V44H74" stroke="#FFFFFF" stroke-width="8" stroke-linecap="square"/>
+                        <path d="M62 62H84V84H36V36H84" stroke="#E8F1F5" stroke-width="3.5" stroke-opacity="0.35"/>
+                        <circle cx="84" cy="42" r="5.5" fill="#FF5722"/>
+                        <circle cx="74" cy="44" r="4.5" fill="#FFFFFF"/>
+                        <circle cx="62" cy="62" r="5.5" fill="#FF5722"/>
                     </svg>
                 </div>
                 <div>
                     <span class="font-display font-bold text-lg sm:text-xl text-charcoal tracking-tight block leading-tight">Servitec Gamarra</span>
-                    <span class="text-xs font-medium text-primary uppercase tracking-wider block">App Store & Hub</span>
+                    <span class="text-xs font-semibold text-primary uppercase tracking-wider block">App Store &amp; Hub</span>
                 </div>
             </a>
 
-            <!-- Search Bar (Desktop) -->
+            <!-- Buscador Desktop -->
             <div class="hidden md:flex items-center flex-1 max-w-md mx-8">
                 <div class="relative w-full">
-                    <span class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-primary/60">
+                    <span class="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-primary">
                         <i data-lucide="search" class="w-4 h-4"></i>
                     </span>
                     <input type="text" id="searchInput" placeholder="Buscar apps, landings, documentos..." 
-                        class="w-full pl-10 pr-4 py-2 bg-skyTech/60 border border-primary/20 rounded-xl text-sm text-charcoal placeholder-charcoal/50 focus:outline-none focus:border-accent focus:ring-1 focus:ring-accent transition-all">
+                        class="w-full pl-10 pr-4 py-2.5 bg-skyTech/80 border border-primary/20 rounded-xl text-sm text-charcoal placeholder-charcoal/50 focus:outline-none focus:bg-pureWhite focus:border-accent focus:ring-1 focus:ring-accent transition-all">
                 </div>
             </div>
 
-            <!-- Actions / Badge -->
+            <!-- Badge de Estado -->
             <div class="flex items-center gap-3">
-                <span class="hidden sm:inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-semibold bg-primary/10 text-primary border border-primary/20">
+                <span class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full text-xs font-semibold bg-charcoal text-pureWhite shadow-sm">
                     <span class="w-2 h-2 rounded-full bg-accent animate-pulse"></span>
                     Producción Activa
                 </span>
             </div>
         </div>
 
-        <!-- Mobile Search Bar -->
-        <div class="md:hidden px-4 pb-3 pt-1 border-t border-primary/5 bg-pureWhite">
+        <!-- Buscador Mobile -->
+        <div class="md:hidden px-4 pb-3 pt-1 border-t border-primary/10 bg-pureWhite">
             <div class="relative w-full">
-                <span class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-primary/60">
+                <span class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-primary">
                     <i data-lucide="search" class="w-4 h-4"></i>
                 </span>
                 <input type="text" id="searchInputMobile" placeholder="Buscar apps, landings, documentos..." 
-                    class="w-full pl-10 pr-4 py-2 bg-skyTech/60 border border-primary/20 rounded-xl text-sm text-charcoal placeholder-charcoal/50 focus:outline-none focus:border-accent focus:ring-1 focus:ring-accent transition-all">
+                    class="w-full pl-10 pr-4 py-2 bg-skyTech/80 border border-primary/20 rounded-xl text-sm text-charcoal placeholder-charcoal/50 focus:outline-none focus:border-accent focus:ring-1 focus:ring-accent transition-all">
             </div>
         </div>
     </header>
 
-    <!-- MAIN CONTENT -->
+    <!-- CONTENIDO PRINCIPAL -->
     <main class="flex-1 max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-8">
         
-        <!-- Hero Section -->
-        <section class="mb-10 text-center sm:text-left">
-            <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 bg-pureWhite p-6 sm:p-8 rounded-2xl border border-primary/10 shadow-sm">
+        <!-- Hero Banner de Alto Contraste -->
+        <section class="mb-8">
+            <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-6 bg-primary text-pureWhite p-6 sm:p-8 rounded-2xl shadow-md border border-charcoal/10">
                 <div>
-                    <h1 class="font-display font-bold text-2xl sm:text-3xl text-charcoal mb-2">Repositorio Oficial de Ingeniería</h1>
-                    <p class="text-charcoal/70 text-sm sm:text-base max-w-2xl">
-                        Descarga directa de APKs optimizadas, documentación técnica y accesos rápidos a nuestros desarrollos mientras completan sus procesos oficiales en tiendas.
+                    <span class="inline-block text-xs font-semibold uppercase tracking-wider text-skyTech/80 mb-1">
+                        Ingeniería Informática &amp; Soluciones Digitales
+                    </span>
+                    <h1 class="font-display font-bold text-2xl sm:text-3xl text-pureWhite mb-2">
+                        Repositorio Oficial de Ingeniería
+                    </h1>
+                    <p class="text-skyTech/90 text-sm sm:text-base max-w-2xl leading-relaxed">
+                        Descarga directa de APKs optimizadas, documentación técnica y accesos rápidos a nuestros desarrollos mientras completan sus procesos oficiales en Google Play Store.
                     </p>
                 </div>
                 <div class="flex-shrink-0">
-                    <div class="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-skyTech text-primary text-xs font-semibold border border-primary/20">
+                    <div class="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl bg-charcoal text-pureWhite text-xs font-semibold border border-pureWhite/15 shadow-sm">
                         <i data-lucide="shield-check" class="w-4 h-4 text-accent"></i>
                         Binarios Verificados
                     </div>
@@ -109,38 +138,38 @@
             </div>
         </section>
 
-        <!-- Category Filter Tabs -->
-        <section class="mb-8">
-            <div id="categoryTabs" class="flex items-center gap-2 overflow-x-auto pb-2 scrollbar-none">
-                <button data-category="todos" class="category-tab active px-4 py-2 rounded-xl text-sm font-semibold whitespace-nowrap transition-all bg-primary text-pureWhite shadow-sm">
+        <!-- Pestañas de Categorías -->
+        <section class="mb-7">
+            <div id="categoryTabs" class="flex items-center gap-2.5 overflow-x-auto pb-2 scrollbar-none">
+                <button data-category="todos" class="category-tab px-4 py-2.5 rounded-xl text-sm font-semibold whitespace-nowrap transition-all bg-primary text-pureWhite shadow-sm">
                     Todos los Proyectos
                 </button>
-                <button data-category="Apps Android" class="category-tab px-4 py-2 rounded-xl text-sm font-semibold whitespace-nowrap transition-all bg-pureWhite text-charcoal/70 border border-primary/10 hover:border-primary/40 hover:text-charcoal">
+                <button data-category="Apps Android" class="category-tab px-4 py-2.5 rounded-xl text-sm font-semibold whitespace-nowrap transition-all bg-pureWhite text-charcoal/80 border border-primary/15 hover:border-primary hover:text-charcoal">
                     Apps Android
                 </button>
-                <button data-category="Web & Landings" class="category-tab px-4 py-2 rounded-xl text-sm font-semibold whitespace-nowrap transition-all bg-pureWhite text-charcoal/70 border border-primary/10 hover:border-primary/40 hover:text-charcoal">
-                    Web & Landings
+                <button data-category="Web & Landings" class="category-tab px-4 py-2.5 rounded-xl text-sm font-semibold whitespace-nowrap transition-all bg-pureWhite text-charcoal/80 border border-primary/15 hover:border-primary hover:text-charcoal">
+                    Web &amp; Landings
                 </button>
-                <button data-category="Documentos" class="category-tab px-4 py-2 rounded-xl text-sm font-semibold whitespace-nowrap transition-all bg-pureWhite text-charcoal/70 border border-primary/10 hover:border-primary/40 hover:text-charcoal">
+                <button data-category="Documentos" class="category-tab px-4 py-2.5 rounded-xl text-sm font-semibold whitespace-nowrap transition-all bg-pureWhite text-charcoal/80 border border-primary/15 hover:border-primary hover:text-charcoal">
                     Documentos
                 </button>
             </div>
         </section>
 
-        <!-- Grid Container -->
+        <!-- Cuadrícula de Proyectos -->
         <section>
             <div id="catalogGrid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-                <!-- Tarjetas inyectadas dinámicamente mediante app.js -->
+                <!-- Tarjetas generadas dinámicamente desde catalog.json -->
             </div>
 
-            <!-- Empty State (Hidden por defecto) -->
-            <div id="emptyState" class="hidden text-center py-16 px-4 bg-pureWhite rounded-2xl border border-primary/10 my-8">
+            <!-- Estado Vacío de Búsqueda -->
+            <div id="emptyState" class="hidden text-center py-16 px-4 bg-pureWhite rounded-2xl border border-primary/15 shadow-sm my-6">
                 <div class="w-16 h-16 bg-skyTech text-primary rounded-2xl flex items-center justify-center mx-auto mb-4">
                     <i data-lucide="folder-search" class="w-8 h-8"></i>
                 </div>
-                <h3 class="font-display font-bold text-lg text-charcoal mb-1">No se encontraron resultados</h3>
-                <p class="text-charcoal/60 text-sm max-w-sm mx-auto mb-6">Intenta ajustando los términos de búsqueda o cambiando de categoría.</p>
-                <button id="resetFilters" class="px-4 py-2 rounded-xl bg-accent text-white text-sm font-semibold hover:bg-accentHover transition-colors">
+                <h3 class="font-display font-bold text-lg text-charcoal mb-1">No encontramos coincidencias</h3>
+                <p class="text-charcoal/65 text-sm max-w-sm mx-auto mb-6">Prueba con otro término de búsqueda o vuelve a mostrar todo el catálogo.</p>
+                <button id="resetFilters" class="px-5 py-2.5 rounded-xl bg-accent text-white text-sm font-semibold hover:bg-accentHover transition-colors shadow-sm">
                     Ver todos los proyectos
                 </button>
             </div>
@@ -149,111 +178,348 @@
     </main>
 
     <!-- FOOTER -->
-    <footer class="bg-pureWhite border-t border-primary/10 mt-12 py-8">
+    <footer class="bg-charcoal text-pureWhite mt-12 py-8">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-center sm:text-left">
             <div class="flex items-center gap-3">
-                <div class="w-8 h-8 rounded-lg bg-primary flex items-center justify-center text-pureWhite">
-                    <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                        <path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"/>
-                        <circle cx="12" cy="12" r="3"/>
+                <div class="w-8 h-8 rounded-lg bg-primary flex items-center justify-center">
+                    <svg class="w-5 h-5" viewBox="0 0 120 120" fill="none">
+                        <path d="M84 42H62V54H78V76H42V44H74" stroke="#FFFFFF" stroke-width="9" stroke-linecap="square"/>
+                        <circle cx="84" cy="42" r="6" fill="#FF5722"/>
                     </svg>
                 </div>
-                <span class="font-display font-bold text-charcoal text-sm">Servitec Gamarra — Ingeniería Informática</span>
+                <span class="font-display font-bold text-pureWhite text-sm">Servitec Gamarra — Ingeniería Informática</span>
             </div>
-            <p class="text-xs text-charcoal/60">
+            <p class="text-xs text-skyTech/70">
                 Soluciones digitales de alto rendimiento. Todos los derechos reservados.
             </p>
         </div>
     </footer>
 
-    <!-- DETAIL MODAL -->
-    <div id="detailModal" class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-charcoal/60 backdrop-blur-sm opacity-0 pointer-events-none transition-opacity duration-300">
-        <div id="modalContainer" class="bg-pureWhite w-full max-w-2xl rounded-2xl shadow-xl border border-primary/10 overflow-hidden transform scale-95 transition-transform duration-300 max-h-[90vh] flex flex-col">
+    <!-- MODAL DE DETALLE TÉCNICO -->
+    <div id="detailModal" class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-charcoal/70 backdrop-blur-sm opacity-0 pointer-events-none">
+        <div id="modalContainer" class="bg-pureWhite w-full max-w-2xl rounded-2xl shadow-2xl border border-primary/20 overflow-hidden transform scale-95 max-h-[90vh] flex flex-col">
             
             <!-- Modal Header -->
-            <div class="p-6 border-b border-primary/10 flex items-start justify-between bg-skyTech/40">
+            <div class="p-6 border-b border-primary/15 flex items-start justify-between bg-skyTech/60">
                 <div class="flex items-center gap-4">
-                    <img id="modalIcon" src="" alt="Icon" class="w-14 h-14 rounded-2xl object-cover bg-skyTech border border-primary/20 shadow-sm" onerror="this.src='./assets/brand/logo-circuit-g.svg'">
+                    <div id="modalIconWrapper" class="w-14 h-14 rounded-2xl flex items-center justify-center shadow-sm flex-shrink-0"></div>
                     <div>
-                        <span id="modalCategory" class="text-xs font-semibold text-primary uppercase tracking-wider block mb-1"></span>
+                        <span id="modalCategory" class="text-xs font-bold text-primary uppercase tracking-wider block mb-0.5"></span>
                         <h2 id="modalTitle" class="font-display font-bold text-xl text-charcoal"></h2>
                     </div>
                 </div>
-                <button id="closeModal" class="w-9 h-9 rounded-xl bg-pureWhite border border-primary/10 text-charcoal/70 hover:text-charcoal hover:bg-skyTech flex items-center justify-center transition-colors">
+                <button id="closeModal" class="w-9 h-9 rounded-xl bg-pureWhite border border-primary/15 text-charcoal hover:bg-charcoal hover:text-pureWhite flex items-center justify-center transition-colors">
                     <i data-lucide="x" class="w-5 h-5"></i>
                 </button>
             </div>
 
-            <!-- Modal Body (Scrollable) -->
+            <!-- Modal Body -->
             <div class="p-6 overflow-y-auto space-y-6 flex-1">
-                
-                <!-- Description -->
                 <div>
-                    <h3 class="text-xs font-semibold text-primary uppercase tracking-wider mb-2">Descripción General</h3>
-                    <p id="modalDescription" class="text-charcoal/80 text-sm leading-relaxed"></p>
+                    <h3 class="text-xs font-bold text-primary uppercase tracking-wider mb-2">¿Qué resuelve esta herramienta?</h3>
+                    <p id="modalDescription" class="text-charcoal/85 text-sm leading-relaxed"></p>
                 </div>
 
-                <!-- Screenshots Carousel -->
-                <div id="screenshotsSection">
-                    <h3 class="text-xs font-semibold text-primary uppercase tracking-wider mb-2">Capturas de Pantalla</h3>
-                    <div id="modalScreenshots" class="flex gap-3 overflow-x-auto pb-2 scrollbar-clean">
-                        <!-- Inyectado dinámicamente -->
-                    </div>
-                </div>
-
-                <!-- Technical Specs Table -->
+                <!-- Especificaciones Técnicas -->
                 <div>
-                    <h3 class="text-xs font-semibold text-primary uppercase tracking-wider mb-2">Especificaciones Técnicas</h3>
-                    <div class="bg-skyTech/50 rounded-xl p-4 border border-primary/10 grid grid-cols-2 sm:grid-cols-4 gap-4 text-xs">
+                    <h3 class="text-xs font-bold text-primary uppercase tracking-wider mb-2">Ficha Técnica</h3>
+                    <div class="bg-skyTech/60 rounded-xl p-4 border border-primary/15 grid grid-cols-2 sm:grid-cols-4 gap-4 text-xs">
                         <div>
-                            <span class="text-charcoal/50 block mb-0.5 font-medium">Versión</span>
-                            <span id="modalVersion" class="font-semibold text-charcoal text-sm"></span>
+                            <span class="text-charcoal/60 block mb-0.5 font-medium">Versión</span>
+                            <span id="modalVersion" class="font-bold text-charcoal text-sm"></span>
                         </div>
                         <div>
-                            <span class="text-charcoal/50 block mb-0.5 font-medium">Tamaño</span>
-                            <span id="modalSize" class="font-semibold text-charcoal text-sm"></span>
+                            <span class="text-charcoal/60 block mb-0.5 font-medium">Peso</span>
+                            <span id="modalSize" class="font-bold text-charcoal text-sm"></span>
                         </div>
                         <div>
-                            <span class="text-charcoal/50 block mb-0.5 font-medium">Actualizado</span>
-                            <span id="modalDate" class="font-semibold text-charcoal text-sm"></span>
+                            <span class="text-charcoal/60 block mb-0.5 font-medium">Actualizado</span>
+                            <span id="modalDate" class="font-bold text-charcoal text-sm"></span>
                         </div>
                         <div>
-                            <span class="text-charcoal/50 block mb-0.5 font-medium">Plataforma</span>
-                            <span id="modalPlatform" class="font-semibold text-charcoal text-sm">Android / Web</span>
+                            <span class="text-charcoal/60 block mb-0.5 font-medium">Entorno</span>
+                            <span id="modalPlatform" class="font-bold text-charcoal text-sm"></span>
                         </div>
                     </div>
                 </div>
 
-                <!-- Android Installation Guide (Only for android-apk) -->
-                <div id="androidGuide" class="hidden bg-amber-50 border border-amber-200 rounded-xl p-4 text-xs space-y-2">
-                    <div class="flex items-center gap-2 font-semibold text-amber-900">
-                        <i data-lucide="alert-circle" class="w-4 h-4 text-amber-600"></i>
-                        Guía rápida para instalar APKs en Android
+                <!-- Guía de Instalación Android -->
+                <div id="androidGuide" class="hidden bg-skyTech border-l-4 border-accent rounded-r-xl p-4 text-xs space-y-2">
+                    <div class="flex items-center gap-2 font-bold text-charcoal">
+                        <i data-lucide="smartphone" class="w-4 h-4 text-accent"></i>
+                        Instalación rápida en Android (3 pasos)
                     </div>
-                    <ol class="list-decimal list-inside text-amber-800 space-y-1 pl-1">
-                        <li>Descarga el archivo APK pulsando el botón inferior.</li>
-                        <li>Abre el archivo descargado desde las notificaciones o tu explorador de archivos.</li>
-                        <li>Si tu dispositivo advierte sobre orígenes desconocidos, pulsa <strong>"Configuración"</strong> y habilita <strong>"Permitir desde esta fuente"</strong> o pulsa <strong>"Instalar de todas formas"</strong>.</li>
+                    <ol class="list-decimal list-inside text-charcoal/85 space-y-1 pl-1">
+                        <li>Pulsa el botón naranja <strong>Descargar APK</strong> para bajar el instalador desde GitHub Releases.</li>
+                        <li>Abre el archivo descargado desde la barra de notificaciones de tu teléfono.</li>
+                        <li>Si Android solicita permiso, toca <strong>"Configuración"</strong> &rarr; activa <strong>"Permitir desde esta fuente"</strong> y pulsa <strong>"Instalar"</strong>.</li>
                     </ol>
                 </div>
-
             </div>
 
             <!-- Modal Footer / CTA -->
-            <div class="p-6 border-t border-primary/10 bg-skyTech/40 flex items-center justify-end gap-3">
+            <div class="p-5 border-t border-primary/15 bg-skyTech/40 flex items-center justify-end gap-3">
                 <button id="closeModalBtn" class="px-5 py-2.5 rounded-xl bg-pureWhite border border-primary/20 text-charcoal text-sm font-semibold hover:bg-skyTech transition-colors">
                     Cerrar
                 </button>
-                <a id="modalDownloadBtn" href="#" target="_blank" class="inline-flex items-center gap-2 px-6 py-2.5 rounded-xl bg-accent text-white text-sm font-semibold hover:bg-accentHover shadow-sm transition-all">
+                <a id="modalDownloadBtn" href="#" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 px-6 py-2.5 rounded-xl bg-accent text-white text-sm font-semibold hover:bg-accentHover shadow-sm transition-all">
                     <i id="modalDownloadIcon" data-lucide="download" class="w-4 h-4"></i>
                     <span id="modalDownloadText">Descargar APK</span>
                 </a>
             </div>
-
         </div>
     </div>
 
-    <!-- Main JS -->
-    <script src="./assets/js/app.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            let catalogData = [];
+            let currentCategory = 'todos';
+            let searchQuery = '';
+
+            const catalogGrid = document.getElementById('catalogGrid');
+            const emptyState = document.getElementById('emptyState');
+            const searchInput = document.getElementById('searchInput');
+            const searchInputMobile = document.getElementById('searchInputMobile');
+            const categoryTabs = document.querySelectorAll('.category-tab');
+            const resetFiltersBtn = document.getElementById('resetFilters');
+
+            const detailModal = document.getElementById('detailModal');
+            const modalContainer = document.getElementById('modalContainer');
+            const closeModal = document.getElementById('closeModal');
+            const closeModalBtn = document.getElementById('closeModalBtn');
+            const modalIconWrapper = document.getElementById('modalIconWrapper');
+            const modalCategory = document.getElementById('modalCategory');
+            const modalTitle = document.getElementById('modalTitle');
+            const modalDescription = document.getElementById('modalDescription');
+            const modalVersion = document.getElementById('modalVersion');
+            const modalSize = document.getElementById('modalSize');
+            const modalDate = document.getElementById('modalDate');
+            const modalPlatform = document.getElementById('modalPlatform');
+            const androidGuide = document.getElementById('androidGuide');
+            const modalDownloadBtn = document.getElementById('modalDownloadBtn');
+            const modalDownloadText = document.getElementById('modalDownloadText');
+            const modalDownloadIcon = document.getElementById('modalDownloadIcon');
+
+            // Genera un icono vectorial limpio y con contraste según el tipo de proyecto
+            function getAppBadgeVisual(item) {
+                if (item.icon) {
+                    return `<img src="${item.icon}" alt="${item.title}" class="w-14 h-14 rounded-2xl object-cover border border-primary/20 shadow-sm">`;
+                }
+                const initials = item.title.substring(0, 2).toUpperCase();
+                if (item.type === 'android-apk') {
+                    return `
+                        <div class="w-14 h-14 rounded-2xl bg-primary text-pureWhite flex flex-col items-center justify-center shadow-sm relative overflow-hidden">
+                            <span class="font-display font-bold text-lg tracking-tight">${initials}</span>
+                            <span class="w-2 h-2 rounded-full bg-accent absolute top-2 right-2"></span>
+                        </div>
+                    `;
+                }
+                if (item.type === 'web-landing') {
+                    return `
+                        <div class="w-14 h-14 rounded-2xl bg-charcoal text-pureWhite flex items-center justify-center shadow-sm">
+                            <i data-lucide="globe" class="w-7 h-7 text-accent"></i>
+                        </div>
+                    `;
+                }
+                return `
+                    <div class="w-14 h-14 rounded-2xl bg-skyTech text-primary border border-primary/25 flex items-center justify-center shadow-sm">
+                        <i data-lucide="file-text" class="w-7 h-7"></i>
+                    </div>
+                `;
+            }
+
+            async function loadCatalog() {
+                try {
+                    const response = await fetch('./catalog.json');
+                    if (!response.ok) throw new Error('No se encontró catalog.json en la raíz');
+                    catalogData = await response.json();
+                    renderCatalog();
+                } catch (error) {
+                    console.error(error);
+                    catalogGrid.innerHTML = `
+                        <div class="col-span-full bg-pureWhite rounded-2xl p-8 border-2 border-accent/40 shadow-sm text-center">
+                            <h3 class="font-display font-bold text-lg text-charcoal mb-2">Falta subir el archivo catalog.json a la raíz</h3>
+                            <p class="text-sm text-charcoal/75 max-w-lg mx-auto">
+                                Crea un archivo llamado <code class="bg-skyTech px-2 py-0.5 rounded font-semibold text-primary">catalog.json</code> junto a este <code class="bg-skyTech px-2 py-0.5 rounded font-semibold text-primary">index.html</code> en tu repositorio de GitHub para mostrar tus aplicaciones aquí.
+                            </p>
+                        </div>
+                    `;
+                }
+            }
+
+            function renderCatalog() {
+                const filtered = catalogData.filter(item => {
+                    const matchesCategory = currentCategory === 'todos' || item.category === currentCategory;
+                    const matchesSearch = item.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
+                                          item.subtitle.toLowerCase().includes(searchQuery.toLowerCase()) ||
+                                          item.description.toLowerCase().includes(searchQuery.toLowerCase());
+                    return matchesCategory && matchesSearch;
+                });
+
+                if (filtered.length === 0) {
+                    catalogGrid.innerHTML = '';
+                    emptyState.classList.remove('hidden');
+                    return;
+                }
+
+                emptyState.classList.add('hidden');
+                catalogGrid.innerHTML = filtered.map(item => {
+                    let badgeStyle = 'bg-primary text-pureWhite';
+                    let ctaLabel = 'Descargar APK';
+                    let ctaIcon = 'download';
+
+                    if (item.type === 'web-landing') {
+                        badgeStyle = 'bg-charcoal text-pureWhite';
+                        ctaLabel = 'Visitar Web';
+                        ctaIcon = 'external-link';
+                    } else if (item.type === 'document') {
+                        badgeStyle = 'bg-skyTech text-primary border border-primary/30';
+                        ctaLabel = 'Descargar PDF';
+                        ctaIcon = 'file-text';
+                    }
+
+                    return `
+                        <article class="project-card rounded-2xl p-6 flex flex-col justify-between cursor-pointer group" data-id="${item.id}">
+                            <div>
+                                <div class="flex items-start justify-between gap-4 mb-4">
+                                    <div class="group-hover:scale-105 transition-transform">
+                                        ${getAppBadgeVisual(item)}
+                                    </div>
+                                    <span class="px-3 py-1 rounded-full text-xs font-semibold tracking-wide ${badgeStyle}">
+                                        ${item.category}
+                                    </span>
+                                </div>
+
+                                <h3 class="font-display font-bold text-xl text-charcoal group-hover:text-primary transition-colors mb-1">
+                                    ${item.title}
+                                </h3>
+                                <p class="text-xs font-semibold text-primary mb-2.5">
+                                    ${item.subtitle}
+                                </p>
+                                <p class="text-charcoal/75 text-sm leading-relaxed line-clamp-3 mb-5">
+                                    ${item.description}
+                                </p>
+                            </div>
+
+                            <div class="pt-4 border-t border-primary/10 flex items-center justify-between gap-3">
+                                <div class="text-xs">
+                                    <span class="font-bold text-charcoal block">${item.version}</span>
+                                    <span class="text-charcoal/60 font-medium">${item.size}</span>
+                                </div>
+
+                                <div class="flex items-center gap-2">
+                                    <span class="text-xs font-semibold text-primary group-hover:underline px-2 py-1.5">
+                                        Detalles
+                                    </span>
+                                    <a href="${item.downloadUrl}" target="_blank" rel="noopener noreferrer"
+                                       onclick="event.stopPropagation();"
+                                       class="inline-flex items-center gap-1.5 px-4 py-2 rounded-xl bg-accent hover:bg-accentHover text-white text-xs font-semibold shadow-sm transition-colors">
+                                        <i data-lucide="${ctaIcon}" class="w-3.5 h-3.5"></i>
+                                        ${ctaLabel}
+                                    </a>
+                                </div>
+                            </div>
+                        </article>
+                    `;
+                }).join('');
+
+                if (window.lucide) lucide.createIcons();
+
+                document.querySelectorAll('.project-card').forEach(card => {
+                    card.addEventListener('click', () => {
+                        const project = catalogData.find(p => p.id === card.getAttribute('data-id'));
+                        if (project) openModal(project);
+                    });
+                });
+            }
+
+            function openModal(project) {
+                modalIconWrapper.innerHTML = getAppBadgeVisual(project);
+                modalCategory.textContent = project.category;
+                modalTitle.textContent = project.title;
+                modalDescription.textContent = project.description;
+                modalVersion.textContent = project.version;
+                modalSize.textContent = project.size;
+                modalDate.textContent = project.updatedAt;
+                modalPlatform.textContent = project.type === 'android-apk'
+                    ? 'Android 8.0+'
+                    : (project.type === 'web-landing' ? 'Navegador Web' : 'PDF');
+
+                if (project.type === 'android-apk') {
+                    androidGuide.classList.remove('hidden');
+                    modalDownloadText.textContent = `Descargar APK (${project.size})`;
+                    modalDownloadIcon.setAttribute('data-lucide', 'download');
+                } else if (project.type === 'web-landing') {
+                    androidGuide.classList.add('hidden');
+                    modalDownloadText.textContent = 'Visitar Sitio Web';
+                    modalDownloadIcon.setAttribute('data-lucide', 'external-link');
+                } else {
+                    androidGuide.classList.add('hidden');
+                    modalDownloadText.textContent = 'Descargar Documento';
+                    modalDownloadIcon.setAttribute('data-lucide', 'file-text');
+                }
+
+                modalDownloadBtn.href = project.downloadUrl;
+                detailModal.classList.remove('opacity-0', 'pointer-events-none');
+                modalContainer.classList.remove('scale-95');
+                document.body.style.overflow = 'hidden';
+                if (window.lucide) lucide.createIcons();
+            }
+
+            function closeModalFunc() {
+                detailModal.classList.add('opacity-0', 'pointer-events-none');
+                modalContainer.classList.add('scale-95');
+                document.body.style.overflow = '';
+            }
+
+            closeModal.addEventListener('click', closeModalFunc);
+            closeModalBtn.addEventListener('click', closeModalFunc);
+            detailModal.addEventListener('click', (e) => { if (e.target === detailModal) closeModalFunc(); });
+            document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeModalFunc(); });
+
+            function handleSearch(e) {
+                searchQuery = e.target.value;
+                if (searchInput.value !== searchQuery) searchInput.value = searchQuery;
+                if (searchInputMobile.value !== searchQuery) searchInputMobile.value = searchQuery;
+                renderCatalog();
+            }
+
+            searchInput.addEventListener('input', handleSearch);
+            searchInputMobile.addEventListener('input', handleSearch);
+
+            categoryTabs.forEach(tab => {
+                tab.addEventListener('click', () => {
+                    categoryTabs.forEach(t => {
+                        t.classList.remove('bg-primary', 'text-pureWhite', 'shadow-sm');
+                        t.classList.add('bg-pureWhite', 'text-charcoal/80', 'border', 'border-primary/15');
+                    });
+                    tab.classList.add('bg-primary', 'text-pureWhite', 'shadow-sm');
+                    tab.classList.remove('bg-pureWhite', 'text-charcoal/80', 'border', 'border-primary/15');
+                    currentCategory = tab.getAttribute('data-category');
+                    renderCatalog();
+                });
+            });
+
+            resetFiltersBtn.addEventListener('click', () => {
+                currentCategory = 'todos';
+                searchQuery = '';
+                searchInput.value = '';
+                searchInputMobile.value = '';
+                categoryTabs.forEach(t => {
+                    if (t.getAttribute('data-category') === 'todos') {
+                        t.classList.add('bg-primary', 'text-pureWhite', 'shadow-sm');
+                        t.classList.remove('bg-pureWhite', 'text-charcoal/80', 'border', 'border-primary/15');
+                    } else {
+                        t.classList.remove('bg-primary', 'text-pureWhite', 'shadow-sm');
+                        t.classList.add('bg-pureWhite', 'text-charcoal/80', 'border', 'border-primary/15');
+                    }
+                });
+                renderCatalog();
+            });
+
+            if (window.lucide) lucide.createIcons();
+            loadCatalog();
+        });
+    </script>
 </body>
 </html>
