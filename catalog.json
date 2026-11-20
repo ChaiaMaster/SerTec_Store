@@ -49,18 +49,18 @@
     "updatedAt": "15 Nov 2026",
     "description": "Juego móvil para estimular el pensamiento, ganas al descifrar el código aleatorio de 4 digitos, desbloquea los niveles o compite con tus amigos. Proyecto desarrollado por Servitec Gamarra.",
     "downloadUrl": "https://github.com/ChaiaMaster/SerTec_Store/releases/download/PicoYFama.v1/Pico.y.Fama.apk",
-    "icon": ""
+    "icon": "./assets/media/icons/picoyfama.webp"
   },
   {
-    "id": "mundo-safari",
-    "title": "Mundo Safari Zoo",
-    "subtitle": "Plataforma web oficial interactiva",
+    "id": "portafolio",
+    "title": "Ing Isaías Gamarra",
+    "subtitle": "Portafolio de proyectos",
     "category": "Web & Landings",
     "type": "web-landing",
     "version": "v1.0.0",
-    "size": "Web App",
+    "size": "Web",
     "updatedAt": "28 Oct 2026",
-    "description": "Sitio web institucional con catálogo interactivo de especies, información operativa y diseño adaptado a cualquier pantalla.",
+    "description": "Sitio web para muestras de los proyectos realizados de forma independiente uno de nuestros líderes; catálogo interactivo de proyetos, información operativa y diseño adaptado a cualquier pantalla.",
     "downloadUrl": "https://mundosafarizoo.com",
     "icon": "./assets/media/icons/MundoSafariZoo.webp"
   },
