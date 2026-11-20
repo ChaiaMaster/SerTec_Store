@@ -23,7 +23,7 @@
     "updatedAt": "15 Nov 2026",
     "description": "Olvídate de los registros dispersos. Controla historiales médicos, pesajes, dietas y tratamientos veterinarios de cada ejemplar en tiempo real.",
     "downloadUrl": "https://github.com/ChaiaMaster/SerTec_Store/releases/download/ZooTrack.v1/ZooTrack_1.0.apk",
-    "icon": ""
+    "icon": "./assets/media/icons/ZooTrack.webp"
   },
   {
     "id": "al-bcv",
@@ -39,21 +39,21 @@
     "icon": "./assets/media/icons/AL_BCV_ico.png"
   },
   {
-    "id": "app-proyecto-4",
-    "title": "App Proyecto 4",
-    "subtitle": "Solución móvil operativa a medida",
+    "id": "picoyfama",
+    "title": "Pico y Fama",
+    "subtitle": "Diviertete descifrando el código y compite con tus amigos.",
     "category": "Apps Android",
     "type": "android-apk",
     "version": "v1.0.0",
-    "size": "124.8 MB",
+    "size": "24.8 MB",
     "updatedAt": "15 Nov 2026",
-    "description": "Herramienta móvil desarrollada por Servitec Gamarra para optimizar procesos operativos diarios con velocidad y precisión.",
+    "description": "Juego móvil para estimular el pensamiento, ganas al descifrar el código aleatorio de 4 digitos, desbloquea los niveles o compite con tus amigos. Proyecto desarrollado por Servitec Gamarra.",
     "downloadUrl": "https://github.com/TU-USUARIO/TU-REPO/releases/download/v1.0.0/app4.apk",
     "icon": ""
   },
   {
-    "id": "portal-mundo-safari",
-    "title": "Portal Mundo Safari Zoo",
+    "id": "mundo-safari",
+    "title": "Mundo Safari Zoo",
     "subtitle": "Plataforma web oficial interactiva",
     "category": "Web & Landings",
     "type": "web-landing",
@@ -62,7 +62,7 @@
     "updatedAt": "28 Oct 2026",
     "description": "Sitio web institucional con catálogo interactivo de especies, información operativa y diseño adaptado a cualquier pantalla.",
     "downloadUrl": "https://mundosafarizoo.com",
-    "icon": ""
+    "icon": "./assets/media/icons/MundoSafariZoo.webp"
   },
   {
     "id": "manual-3d",
