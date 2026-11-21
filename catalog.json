@@ -23,7 +23,7 @@
     "updatedAt": "15 Nov 2026",
     "description": "Olvídate de los registros dispersos. Controla historiales médicos, pesajes, dietas y tratamientos veterinarios de cada ejemplar en tiempo real.",
     "downloadUrl": "https://github.com/ChaiaMaster/SerTec_Store/releases/download/ZooTrack.v1/ZooTrack_1.0.apk",
-    "icon": "./assets/media/icons/ZooTrack.webp"
+    "icon": "./assets/media/icons/zootrack_logo.png"
   },
   {
     "id": "al-bcv",
