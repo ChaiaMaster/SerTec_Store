@@ -1,755 +1,531 @@
 <!DOCTYPE html>
 <html lang="es" class="scroll-smooth">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>SerTec Store — Tienda Oficial de Aplicaciones | Servitec Gamarra</title>
-  <meta name="description" content="Descarga directa de aplicaciones oficiales desarrolladas por Servitec Gamarra. Herramientas rápidas, seguras y verificadas para Android y Web." />
-  <meta name="theme-color" content="#4B5320" />
-
-  <!-- Favicon / Icono de marca -->
-  <link rel="icon" type="image/webp" href="./assets/brand/ServiTecStore.webp" />
-  <link rel="apple-touch-icon" href="./assets/brand/ServiTecStore.webp" />
-
-  <!-- Tipografía Inter -->
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
-
-  <!-- Tailwind CSS CDN -->
-  <script src="https://cdn.tailwindcss.com"></script>
-  <script>
-    tailwind.config = {
-      theme: {
-        extend: {
-          fontFamily: {
-            sans: ['Inter', 'system-ui', 'sans-serif'],
-          },
-          colors: {
-            brand: {
-              olive: '#4B5320',
-              oliveDark: '#3A4118',
-              orange: '#FF5722',
-              orangeHover: '#E64A19',
-              charcoal: '#1E2022',
-              sky: '#E8F1F5',
-              white: '#FFFFFF',
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ServiTec Gamarra — App Store</title>
+    <!-- Google Fonts: Plus Jakarta Sans & Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Plus+Jakarta+Sans:wght@600;700&display=swap" rel="stylesheet">
+    <!-- Tailwind CSS v3 via CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#4B5320',      // Verde Oliva / Olive Military
+                        accent: '#FF5722',       // Naranja Vibrante / Electric Orange
+                        accentHover: '#E64A19',
+                        charcoal: '#1E2022',     // Carbón Técnico
+                        skyTech: '#E8F1F5',      // Azul Cielo Lavado
+                        pureWhite: '#FFFFFF'     // Blanco Pulcro
+                    },
+                    fontFamily: {
+                        display: ['"Plus Jakarta Sans"', 'sans-serif'],
+                        sans: ['Inter', 'sans-serif']
+                    }
+                }
             }
-          }
         }
-      }
-    }
-  </script>
+    </script>
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+        body {
+            background-color: #E8F1F5;
+            background-image: radial-gradient(rgba(75, 83, 32, 0.09) 1px, transparent 1px);
+            background-size: 20px 20px;
+        }
+        .project-card {
+            background-color: #FFFFFF;
+            border: 1px solid rgba(75, 83, 32, 0.16);
+            box-shadow: 0 4px 14px -2px rgba(30, 32, 34, 0.06);
+            transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1),
+                        box-shadow 0.2s cubic-bezier(0.16, 1, 0.3, 1),
+                        border-color 0.2s ease;
+        }
+        .project-card:hover {
+            transform: translateY(-4px);
+            border-color: #4B5320;
+            box-shadow: 0 14px 26px -6px rgba(75, 83, 32, 0.18);
+        }
+        .scrollbar-none::-webkit-scrollbar { display: none; }
+        .scrollbar-none { -ms-overflow-style: none; scrollbar-width: none; }
+        #detailModal { transition: opacity 0.25s ease-in-out; }
+        #modalContainer { transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1); }
+    </style>
+    
+    <!-- Open Graph / Redes Sociales (WhatsApp, Telegram, etc.) -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://chaiamaster.github.io/SerTec_Store/">
+    <meta property="og:title" content="ServiTec Gamarra — App Store">
+    <meta property="og:description" content="Descarga directa de APKs optimizadas, documentación técnica y accesos rápidos a nuestros desarrollos de software.">
+    <meta property="og:image" content="https://chaiamaster.github.io/SerTec_Store/assets/brand/og-cover.png">
 
-  <style>
-    /* Ocultar barras de desplazamiento en carruseles horizontales */
-    .no-scrollbar::-webkit-scrollbar {
-      display: none;
-    }
-    .no-scrollbar {
-      -ms-overflow-style: none;
-      scrollbar-width: none;
-    }
-    /* Animación suave del modal */
-    @keyframes modalFadeIn {
-      from { opacity: 0; transform: translateY(14px) scale(0.98); }
-      to { opacity: 1; transform: translateY(0) scale(1); }
-    }
-    .animate-modal {
-      animation: modalFadeIn 0.22s ease-out forwards;
-    }
-  </style>
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:url" content="https://chaiamaster.github.io/SerTec_Store/">
+    <meta name="twitter:title" content="ServiTec Gamarra — App Store">
+    <meta name="twitter:description" content="Descarga directa de APKs optimizadas y herramientas de desarrollo.">
+    <meta name="twitter:image" content="https://chaiamaster.github.io/SerTec_Store/assets/brand/og-cover.png">
 </head>
+<body class="text-charcoal font-sans antialiased min-h-screen flex flex-col justify-between selection:bg-accent selection:text-white">
 
-<body class="bg-brand-white text-brand-charcoal font-sans antialiased selection:bg-brand-orange selection:text-white pb-20 md:pb-8">
-
-  <!-- ==================== HEADER ==================== -->
-  <header class="sticky top-0 z-40 bg-brand-white/95 backdrop-blur-md border-b border-brand-sky">
-    <div class="max-w-6xl mx-auto px-4 h-16 flex items-center justify-between gap-3">
-      
-      <!-- Logo y Nombre -->
-      <a href="#" onclick="resetFilters(event)" class="flex items-center gap-3 shrink-0 group">
-        <img 
-          src="./assets/brand/ServiTecStore.webp" 
-          onerror="this.src='data:image/svg+xml;utf8,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><rect width=%22100%22 height=%22100%22 rx=%2222%22 fill=%22%234B5320%22/><text x=%2250%22 y=%2266%22 font-size=%2252%22 font-family=%22Arial%22 font-weight=%22bold%22 fill=%22white%22 text-anchor=%22middle%22>G</text></svg>'"
-          alt="Logo SerTec Store" 
-          class="w-10 h-10 rounded-xl object-cover border border-brand-sky shadow-sm group-hover:scale-105 transition"
-        />
-        <div class="leading-tight">
-          <div class="flex items-center gap-1.5">
-            <span class="font-extrabold text-brand-charcoal text-lg tracking-tight">SerTec</span>
-            <span class="font-extrabold text-brand-olive text-lg tracking-tight">Store</span>
-          </div>
-          <span class="block text-[11px] font-medium text-slate-500">Servitec Gamarra</span>
-        </div>
-      </a>
-
-      <!-- Buscador Desktop -->
-      <div class="hidden md:block flex-1 max-w-md mx-4">
-        <div class="relative">
-          <svg class="w-4 h-4 text-slate-400 absolute left-3.5 top-1/2 -translate-y-1/2" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-4.35-4.35m0 0A7.5 7.5 0 104.5 4.5a7.5 7.5 0 0012.15 12.15z" />
-          </svg>
-          <input 
-            id="searchInputDesktop"
-            type="search" 
-            placeholder="Buscar aplicaciones, utilidades, web apps..." 
-            class="w-full bg-brand-sky/75 hover:bg-brand-sky focus:bg-brand-white text-brand-charcoal text-sm rounded-full pl-10 pr-4 py-2 border border-transparent focus:border-brand-olive outline-none transition"
-          />
-        </div>
-      </div>
-
-      <!-- Estado / Verificación -->
-      <div class="flex items-center gap-2 shrink-0">
-        <span class="inline-flex items-center gap-1.5 text-xs font-semibold bg-brand-sky text-brand-olive px-3 py-1.5 rounded-full">
-          <span class="w-2 h-2 rounded-full bg-brand-olive animate-pulse"></span>
-          <span class="hidden sm:inline">Apps Verificadas</span>
-          <span class="sm:hidden">Verificado</span>
-        </span>
-      </div>
-    </div>
-
-    <!-- Buscador Móvil -->
-    <div class="md:hidden px-4 pb-3">
-      <div class="relative">
-        <svg class="w-4 h-4 text-slate-400 absolute left-3.5 top-1/2 -translate-y-1/2" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-          <path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-4.35-4.35m0 0A7.5 7.5 0 104.5 4.5a7.5 7.5 0 0012.15 12.15z" />
-        </svg>
-        <input 
-          id="searchInputMobile"
-          type="search" 
-          placeholder="Buscar en SerTec Store..." 
-          class="w-full bg-brand-sky/80 focus:bg-brand-white text-brand-charcoal text-sm rounded-full pl-10 pr-4 py-2 border border-transparent focus:border-brand-olive outline-none transition"
-        />
-      </div>
-    </div>
-  </header>
-
-  <!-- ==================== CONTENIDO PRINCIPAL ==================== -->
-  <main class="max-w-6xl mx-auto px-4 pt-5 space-y-8">
-
-    <!-- 1. BANNER APP DESTACADA (FEATURED HERO) -->
-    <section id="featuredBanner" class="relative overflow-hidden rounded-3xl bg-gradient-to-br from-brand-charcoal via-[#262b22] to-brand-olive text-brand-white p-6 md:p-9 shadow-md">
-      <!-- Decoración geométrica sutil -->
-      <div class="absolute -right-16 -top-16 w-64 h-64 rounded-full bg-brand-olive/30 blur-2xl pointer-events-none"></div>
-      <div class="absolute right-8 bottom-0 w-40 h-40 rounded-full bg-brand-orange/15 blur-2xl pointer-events-none"></div>
-
-      <div id="featuredContent" class="relative z-10 grid md:grid-cols-12 gap-6 items-center">
-        <!-- Se rellena dinámicamente con la app destacada -->
-      </div>
-    </section>
-
-    <!-- 2. BARRA DE CATEGORÍAS Y CONTADOR -->
-    <section class="space-y-4">
-      <div class="flex items-center justify-between gap-2">
-        <h2 class="text-lg md:text-xl font-extrabold text-brand-charcoal tracking-tight">Explorar Catálogo</h2>
-        <span id="appsCounter" class="text-xs font-semibold text-slate-500 bg-brand-sky px-3 py-1 rounded-full">
-          Cargando...
-        </span>
-      </div>
-
-      <!-- Pills de Categorías -->
-      <div id="categoryTabs" class="flex items-center gap-2 overflow-x-auto pb-1 no-scrollbar">
-        <button data-category="all" class="category-pill active px-4 py-2 rounded-full text-sm font-semibold bg-brand-olive text-white shadow-sm transition shrink-0">
-          Todas
-        </button>
-        <button data-category="Finanzas" class="category-pill px-4 py-2 rounded-full text-sm font-medium bg-brand-sky text-brand-charcoal hover:bg-brand-olive/15 transition shrink-0">
-          Finanzas
-        </button>
-        <button data-category="Utilidades" class="category-pill px-4 py-2 rounded-full text-sm font-medium bg-brand-sky text-brand-charcoal hover:bg-brand-olive/15 transition shrink-0">
-          Utilidades
-        </button>
-        <button data-category="Gestión" class="category-pill px-4 py-2 rounded-full text-sm font-medium bg-brand-sky text-brand-charcoal hover:bg-brand-olive/15 transition shrink-0">
-          Gestión
-        </button>
-        <button data-category="Web" class="category-pill px-4 py-2 rounded-full text-sm font-medium bg-brand-sky text-brand-charcoal hover:bg-brand-olive/15 transition shrink-0">
-          Web Apps
-        </button>
-      </div>
-    </section>
-
-    <!-- 3. CUADRÍCULA DE APLICACIONES (ESTILO TIENDA) -->
-    <section>
-      <div id="appsGrid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-        <!-- Tarjetas generadas por JS -->
-      </div>
-
-      <!-- Estado Vacío (Sin resultados) -->
-      <div id="emptyState" class="hidden text-center py-14 px-4 bg-brand-sky/40 rounded-3xl border border-brand-sky">
-        <div class="w-14 h-14 mx-auto mb-3 rounded-2xl bg-brand-white flex items-center justify-center text-brand-olive shadow-sm">
-          <svg class="w-7 h-7" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-4.35-4.35m0 0A7.5 7.5 0 104.5 4.5a7.5 7.5 0 0012.15 12.15z" />
-          </svg>
-        </div>
-        <h3 class="text-base font-bold text-brand-charcoal">No encontramos coincidencias</h3>
-        <p class="text-sm text-slate-500 mt-1 max-w-md mx-auto">Prueba con otro término de búsqueda o vuelve a explorar todas las aplicaciones disponibles.</p>
-        <button onclick="resetFilters()" class="mt-4 bg-brand-olive hover:bg-brand-oliveDark text-white text-sm font-semibold px-5 py-2.5 rounded-full transition">
-          Ver todo el catálogo
-        </button>
-      </div>
-    </section>
-
-    <!-- 4. BANNER DE SOPORTE / DESARROLLO A MEDIDA -->
-    <section id="soporteSection" class="rounded-3xl bg-brand-sky p-6 md:p-8 flex flex-col md:flex-row items-start md:items-center justify-between gap-6 border border-brand-olive/15">
-      <div class="space-y-1.5 max-w-xl">
-        <span class="text-xs font-bold uppercase tracking-wider text-brand-olive">Servitec Gamarra • Ingeniería</span>
-        <h3 class="text-xl font-extrabold text-brand-charcoal">¿Necesitas una app o sistema a medida?</h3>
-        <p class="text-sm text-slate-600 leading-relaxed">
-          Desarrollamos aplicaciones Android, sistemas de inventario, bots de Telegram y plataformas web optimizadas para tu negocio.
-        </p>
-      </div>
-      <div class="flex flex-wrap gap-3 shrink-0">
-        <a href="https://t.me/TecniMago" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 bg-brand-charcoal hover:bg-black text-white text-sm font-bold px-5 py-3 rounded-full transition">
-          <span>Contactar Soporte</span>
-          <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" d="M14 5l7 7m0 0l-7 7m7-7H3" />
-          </svg>
-        </a>
-      </div>
-    </section>
-
-  </main>
-
-  <!-- ==================== FOOTER ==================== -->
-  <footer class="max-w-6xl mx-auto px-4 mt-12 pt-6 border-t border-brand-sky text-center sm:text-left flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-slate-500">
-    <div class="flex items-center gap-2.5">
-      <img 
-        src="./assets/brand/ServiTecStore.webp" 
-        onerror="this.style.display='none'"
-        alt="Servitec Gamarra" 
-        class="w-6 h-6 rounded-md object-cover"
-      />
-      <span class="font-semibold text-brand-charcoal">Servitec Gamarra — Ingeniería Informática</span>
-    </div>
-    <p>Aplicaciones verificadas y distribuidas oficialmente. Todos los derechos reservados.</p>
-  </footer>
-
-  <!-- ==================== BARRA DE NAVEGACIÓN INFERIOR (SOLO MÓVIL) ==================== -->
-  <nav class="md:hidden fixed bottom-0 inset-x-0 z-40 bg-brand-white/95 backdrop-blur-md border-t border-brand-sky px-6 py-2 flex items-center justify-around">
-    <button onclick="mobileNav('all', this)" class="mobile-nav-btn text-brand-olive flex flex-col items-center gap-0.5 text-[11px] font-bold">
-      <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M4 4h6v6H4V4zm10 0h6v6h-6V4zM4 14h6v6H4v-6zm10 0h6v6h-6v-6z"/></svg>
-      <span>Apps</span>
-    </button>
-    <button onclick="mobileNav('Web', this)" class="mobile-nav-btn text-slate-500 flex flex-col items-center gap-0.5 text-[11px] font-medium">
-      <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9"/></svg>
-      <span>Web Apps</span>
-    </button>
-    <a href="#soporteSection" class="mobile-nav-btn text-slate-500 flex flex-col items-center gap-0.5 text-[11px] font-medium">
-      <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M18.364 5.636l-3.536 3.536m0 5.656l3.536 3.536M9.172 9.172L5.636 5.636m3.536 9.192l-3.536 3.536M21 12a9 9 0 11-18 0 9 9 0 0118 0zm-5 0a4 4 0 11-8 0 4 4 0 018 0z"/></svg>
-      <span>Soporte</span>
-    </a>
-  </nav>
-
-  <!-- ==================== MODAL DETALLE DE APP (FICHA PLAY STORE) ==================== -->
-  <div id="appModal" class="fixed inset-0 z-50 hidden items-end sm:items-center justify-center bg-brand-charcoal/60 backdrop-blur-xs p-0 sm:p-4" onclick="closeModalOnBackdrop(event)">
-    <div class="animate-modal bg-brand-white w-full sm:max-w-2xl max-h-[92vh] rounded-t-3xl sm:rounded-3xl shadow-2xl flex flex-col overflow-hidden">
-      
-      <!-- Header Fijo del Modal -->
-      <div class="px-5 py-4 border-b border-brand-sky flex items-center justify-between gap-3 bg-brand-white">
-        <div class="flex items-center gap-3.5 min-w-0">
-          <div id="modalIcon" class="w-14 h-14 rounded-2xl bg-brand-sky flex items-center justify-center shrink-0 overflow-hidden border border-brand-sky font-extrabold text-xl text-brand-olive">
-            <!-- Icono -->
-          </div>
-          <div class="min-w-0">
-            <div class="flex items-center gap-2">
-              <h2 id="modalTitle" class="text-lg sm:text-xl font-extrabold text-brand-charcoal truncate">Nombre App</h2>
-              <span id="modalBadge" class="text-[10px] font-bold uppercase px-2 py-0.5 rounded-md bg-brand-sky text-brand-olive shrink-0">APK</span>
-            </div>
-            <p id="modalCategory" class="text-xs font-medium text-slate-500">Categoría • Servitec Gamarra</p>
-          </div>
-        </div>
-
-        <div class="flex items-center gap-1.5 shrink-0">
-          <!-- Botón Compartir Enlace Directo -->
-          <button id="shareAppBtn" onclick="shareCurrentApp()" title="Compartir enlace de la app" class="p-2.5 rounded-full bg-brand-sky hover:bg-brand-olive/15 text-brand-charcoal transition">
-            <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" d="M8.684 13.342C8.886 12.938 9 12.482 9 12c0-.482-.114-.938-.316-1.342m0 2.684a3 3 0 110-2.684m0 2.684l6.632 3.316m-6.632-6l6.632-3.316m0 0a3 3 0 105.367-2.684 3 3 0 00-5.367 2.684zm0 9.316a3 3 0 105.368 2.684 3 3 0 00-5.368-2.684z" />
-            </svg>
-          </button>
-          <!-- Botón Cerrar -->
-          <button onclick="closeAppModal()" aria-label="Cerrar" class="p-2.5 rounded-full bg-brand-sky hover:bg-slate-200 text-brand-charcoal transition">
-            <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
-            </svg>
-          </button>
-        </div>
-      </div>
-
-      <!-- Cuerpo Desplazable del Modal -->
-      <div class="p-5 sm:p-6 overflow-y-auto space-y-6">
-
-        <!-- Métricas Rápidas Estilo Tienda -->
-        <div class="grid grid-cols-3 divide-x divide-brand-sky bg-brand-sky/45 rounded-2xl py-3 text-center">
-          <div>
-            <span id="modalVersion" class="block text-sm font-extrabold text-brand-charcoal">v1.0</span>
-            <span class="text-[11px] text-slate-500">Versión</span>
-          </div>
-          <div>
-            <span id="modalSize" class="block text-sm font-extrabold text-brand-charcoal">12 MB</span>
-            <span class="text-[11px] text-slate-500">Tamaño</span>
-          </div>
-          <div>
-            <span id="modalPlatform" class="block text-sm font-extrabold text-brand-olive">Android 8+</span>
-            <span class="text-[11px] text-slate-500">Plataforma</span>
-          </div>
-        </div>
-
-        <!-- Carrusel de Capturas de Pantalla (Screenshots) -->
-        <div id="modalScreenshotsSection" class="space-y-2.5">
-          <h3 class="text-xs font-bold uppercase tracking-wider text-slate-500">Vista previa</h3>
-          <div id="modalScreenshots" class="flex gap-3 overflow-x-auto pb-2 no-scrollbar">
-            <!-- Capturas o tarjetas de preview generadas por JS -->
-          </div>
-        </div>
-
-        <!-- Acerca de esta app -->
-        <div class="space-y-2">
-          <h3 class="text-sm font-bold text-brand-charcoal">Acerca de esta app</h3>
-          <p id="modalDescription" class="text-sm text-slate-600 leading-relaxed"></p>
-        </div>
-
-        <!-- Novedades de la versión -->
-        <div id="modalChangelogBox" class="bg-brand-sky/40 rounded-2xl p-4 space-y-1.5 border border-brand-sky">
-          <div class="flex items-center justify-between">
-            <h4 class="text-xs font-bold uppercase tracking-wider text-brand-olive">Novedades</h4>
-            <span id="modalUpdated" class="text-[11px] text-slate-500">Actualizado recientemente</span>
-          </div>
-          <p id="modalChangelog" class="text-xs sm:text-sm text-brand-charcoal leading-relaxed"></p>
-        </div>
-
-        <!-- Guía de Instalación Rápida (Solo visible para APKs) -->
-        <div id="androidInstallGuide" class="rounded-2xl bg-brand-charcoal text-brand-white p-4 space-y-2.5">
-          <div class="flex items-center gap-2 text-brand-orange font-bold text-xs uppercase tracking-wider">
-            <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-            </svg>
-            <span>Instalación rápida en Android (3 pasos)</span>
-          </div>
-          <ol class="text-xs text-slate-200 space-y-1.5 list-decimal list-inside leading-relaxed">
-            <li>Pulsa el botón naranja <strong class="text-white">Descargar APK</strong> para bajar el instalador oficial.</li>
-            <li>Abre el archivo descargado desde las notificaciones o tu carpeta <strong class="text-white">Descargas</strong>.</li>
-            <li>Si Android lo solicita, toca <strong class="text-white">Configuración</strong> → activa <strong class="text-white">Permitir desde esta fuente</strong> y pulsa <strong class="text-white">Instalar</strong>.</li>
-          </ol>
-        </div>
-
-      </div>
-
-      <!-- Footer Fijo con CTA Naranja -->
-      <div class="px-5 py-4 border-t border-brand-sky bg-brand-white flex items-center justify-between gap-3">
-        <div class="hidden sm:block">
-          <span class="block text-xs font-bold text-brand-charcoal">Descarga directa y segura</span>
-          <span class="text-[11px] text-slate-500">Sin publicidad invasiva • Verificado por Servitec</span>
-        </div>
-        <a 
-          id="modalDownloadBtn"
-          href="#" 
-          target="_blank" 
-          rel="noopener noreferrer"
-          class="w-full sm:w-auto inline-flex items-center justify-center gap-2 bg-brand-orange hover:bg-brand-orangeHover text-white font-bold text-sm px-7 py-3.5 rounded-full shadow-md transition active:scale-95"
-        >
-          <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" d="M4 16v2a2 2 0 002 2h12a2 2 0 002-2v-2M7 10l5 5m0 0l5-5m-5 5V3" />
-          </svg>
-          <span id="modalDownloadLabel">Descargar APK</span>
-        </a>
-      </div>
-
-    </div>
-  </div>
-
-  <!-- Toast de Notificación (Copiar enlace) -->
-  <div id="toast" class="fixed bottom-20 md:bottom-6 left-1/2 -translate-x-1/2 z-50 hidden bg-brand-charcoal text-white text-xs font-semibold px-4 py-2.5 rounded-full shadow-lg">
-    Enlace copiado al portapapeles
-  </div>
-
-  <!-- ==================== DATOS Y LÓGICA DE LA TIENDA ==================== -->
-  <script>
-    /**
-     * CATÁLOGO DE APLICACIONES DE SERTEC STORE
-     * Edita aquí tus apps, versiones, enlaces de descarga (.apk o web) y capturas.
-     */
-    const APPS_CATALOG = [
-      {
-        id: 'al-bcv',
-        name: 'AL BCV',
-        tagline: 'Tasa oficial USD / EUR al instante',
-        category: 'Finanzas',
-        type: 'APK',
-        featured: true,
-        version: 'v1.3.0',
-        size: '8.4 MB',
-        platform: 'Android 8.0+',
-        updated: 'Nov 2026',
-        initials: 'BCV',
-        iconBg: 'bg-brand-olive text-white',
-        iconUrl: '', // Opcional: './assets/icons/albcv.webp'
-        downloadUrl: 'https://github.com/chaiamaster', // Reemplaza con tu enlace directo de GitHub Releases
-        description: 'Consulta la tasa oficial diaria del Banco Central de Venezuela (Dólar y Euro) en tiempo real. Incluye calculadora bidireccional rápida, historial reciente y función de compartir montos listos para cobrar o transferir.',
-        changelog: 'Optimización en la sincronización con el portal del BCV, modo de cálculo rápido y mejoras visuales.',
-        highlights: [
-          'Tasa oficial USD y EUR actualizada automáticamente',
-          'Calculadora instantánea Bs ↔ USD / EUR',
-          'Funciona sin conexión con la última tasa guardada'
-        ]
-      },
-      {
-        id: 'telebackup',
-        name: 'TeleBackup',
-        tagline: 'Respaldo automático en Telegram y libera espacio',
-        category: 'Utilidades',
-        type: 'APK',
-        featured: false,
-        version: 'v2.1.0',
-        size: '14.2 MB',
-        platform: 'Android 8.0+',
-        updated: 'Oct 2026',
-        initials: 'TB',
-        iconBg: 'bg-brand-charcoal text-white',
-        iconUrl: '', // Opcional: './assets/icons/telebackup.webp'
-        downloadUrl: 'https://chaiamaster.github.io/TeleBackup',
-        description: 'Respalda tus fotos, videos y documentos directamente en tu nube privada de Telegram sin límites de almacenamiento y libera memoria interna de tu teléfono con un toque.',
-        changelog: 'Mayor velocidad de subida en segundo plano, selección inteligente de carpetas y panel de estado.',
-        highlights: [
-          'Almacenamiento ilimitado usando tu cuenta de Telegram',
-          'Limpieza segura de archivos ya respaldados',
-          'Sincronización automática por Wi-Fi'
-        ]
-      },
-      {
-        id: 'zootrack',
-        name: 'ZooTrack',
-        tagline: 'Gestión veterinaria, peso y alimentación',
-        category: 'Gestión',
-        type: 'APK',
-        featured: false,
-        version: 'v1.2.5',
-        size: '16.8 MB',
-        platform: 'Android 9.0+',
-        updated: 'Oct 2026',
-        initials: 'ZT',
-        iconBg: 'bg-brand-olive text-white',
-        iconUrl: '',
-        downloadUrl: 'https://github.com/chaiamaster',
-        description: 'Aplicación especializada para el control integral de fauna, seguimiento médico, registro de peso, dietas y alertas de cuidado con respaldo sincronizado.',
-        changelog: 'Nuevas fichas clínicas por ejemplar, exportación de reportes y mejoras de rendimiento offline.',
-        highlights: [
-          'Control de historial médico y control de peso',
-          'Funcionamiento 100% offline en campo',
-          'Sincronización en la nube para respaldo'
-        ]
-      },
-      {
-        id: 'portafolio-servitec',
-        name: 'Servitec Web & Servicios',
-        tagline: 'Cotizaciones, soporte técnico y desarrollo',
-        category: 'Web',
-        type: 'WEB',
-        featured: false,
-        version: 'Web 2.0',
-        size: 'Cloud',
-        platform: 'Navegador',
-        updated: 'Nov 2026',
-        initials: 'SG',
-        iconBg: 'bg-brand-orange text-white',
-        iconUrl: './assets/brand/ServiTecStore.webp',
-        downloadUrl: 'https://chaiamaster.github.io/ingisaiasgamarraportafolio.github.io/',
-        description: 'Portal oficial de ingeniería informática y servicio técnico especializado. Explora proyectos desarrollados, solicita diagnósticos de equipos o cotiza tu próximo software.',
-        changelog: 'Rediseño completo bajo el Manual de Identidad Visual de Servitec Gamarra.',
-        highlights: [
-          'Acceso directo desde cualquier dispositivo sin instalar',
-          'Catálogo de soluciones de hardware y software',
-          'Contacto directo con ingeniería'
-        ]
-      }
-    ];
-
-    let currentCategory = 'all';
-    let currentSearch = '';
-    let activeModalApp = null;
-
-    // Renderizar Icono (Imagen o Iniciales estilizadas)
-    function renderAppIcon(app, sizeClasses = 'w-16 h-16 text-lg') {
-      if (app.iconUrl) {
-        return `<img src="${app.iconUrl}" alt="${app.name}" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" class="${sizeClasses} rounded-2xl object-cover shrink-0 border border-brand-sky" />
-                <div style="display:none" class="${sizeClasses} ${app.iconBg} rounded-2xl items-center justify-center font-extrabold shrink-0 shadow-xs">${app.initials}</div>`;
-      }
-      return `<div class="${sizeClasses} ${app.iconBg} rounded-2xl flex items-center justify-center font-extrabold shrink-0 shadow-xs tracking-tight">${app.initials}</div>`;
-    }
-
-    // Renderizar Banner Destacado
-    function renderFeaturedApp() {
-      const app = APPS_CATALOG.find(a => a.featured) || APPS_CATALOG[0];
-      const container = document.getElementById('featuredContent');
-      if (!app || !container) return;
-
-      const ctaText = app.type === 'WEB' ? 'Abrir Web App' : `Descargar ${app.type} • Gratis`;
-
-      container.innerHTML = `
-        <div class="md:col-span-7 space-y-4">
-          <div class="inline-flex items-center gap-2 bg-brand-orange text-white text-[11px] font-bold uppercase tracking-wider px-3 py-1 rounded-full shadow-xs">
-            <span>★ App Destacada</span>
-          </div>
-
-          <div class="flex items-center gap-4">
-            ${renderAppIcon(app, 'w-16 h-16 sm:w-20 sm:h-20 text-2xl')}
-            <div>
-              <h1 class="text-2xl sm:text-3xl font-extrabold tracking-tight text-white">${app.name}</h1>
-              <p class="text-slate-300 text-xs sm:text-sm font-medium mt-0.5">${app.category} • ${app.version} • ${app.size}</p>
-            </div>
-          </div>
-
-          <p class="text-slate-200 text-sm sm:text-base max-w-xl leading-relaxed">
-            ${app.description}
-          </p>
-
-          <div class="pt-1 flex flex-wrap items-center gap-3">
-            <a href="${app.downloadUrl}" target="_blank" rel="noopener noreferrer"
-               class="inline-flex items-center gap-2 bg-brand-orange hover:bg-brand-orangeHover text-white font-bold text-sm px-6 py-3 rounded-full shadow-md transition active:scale-95">
-              <span>${ctaText}</span>
-            </a>
-            <button onclick="openAppModal('${app.id}')"
-               class="bg-white/10 hover:bg-white/20 text-white font-semibold text-sm px-5 py-3 rounded-full transition">
-              Ver ficha y detalles
-            </button>
-          </div>
-        </div>
-
-        <!-- Tarjeta visual derecha -->
-        <div class="md:col-span-5 hidden md:block">
-          <div class="bg-white/10 backdrop-blur-md border border-white/15 rounded-2xl p-5 space-y-3">
-            <div class="flex items-center justify-between text-xs text-slate-300">
-              <span class="font-semibold text-white">Características clave</span>
-              <span class="px-2 py-0.5 rounded bg-brand-olive text-white font-bold">${app.platform}</span>
-            </div>
-            <ul class="space-y-2 text-xs text-slate-200">
-              ${app.highlights.map(item => `
-                <li class="flex items-start gap-2">
-                  <span class="text-brand-orange font-bold">✓</span>
-                  <span>${item}</span>
-                </li>
-              `).join('')}
-            </ul>
-          </div>
-        </div>
-      `;
-    }
-
-    // Renderizar Cuadrícula de Apps
-    function renderAppsGrid() {
-      const grid = document.getElementById('appsGrid');
-      const emptyState = document.getElementById('emptyState');
-      const counter = document.getElementById('appsCounter');
-
-      const filtered = APPS_CATALOG.filter(app => {
-        const matchesCategory = currentCategory === 'all' || app.category === currentCategory;
-        const query = currentSearch.toLowerCase().trim();
-        const matchesSearch = !query || 
-          app.name.toLowerCase().includes(query) || 
-          app.tagline.toLowerCase().includes(query) || 
-          app.category.toLowerCase().includes(query);
-        return matchesCategory && matchesSearch;
-      });
-
-      counter.textContent = `${filtered.length} ${filtered.length === 1 ? 'aplicación' : 'aplicaciones'}`;
-
-      if (filtered.length === 0) {
-        grid.innerHTML = '';
-        emptyState.classList.remove('hidden');
-        return;
-      }
-
-      emptyState.classList.add('hidden');
-
-      grid.innerHTML = filtered.map(app => {
-        const actionLabel = app.type === 'WEB' ? 'Abrir' : 'Obtener';
-        return `
-          <article onclick="openAppModal('${app.id}')" 
-                   class="group bg-brand-white border border-brand-sky hover:border-brand-olive/40 rounded-2xl p-4 shadow-xs hover:shadow-md transition flex items-center justify-between gap-3.5 cursor-pointer">
+    <!-- HEADER / NAVBAR -->
+    <header class="sticky top-0 z-40 bg-pureWhite/95 backdrop-blur-md border-b border-primary/15 shadow-sm">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
             
-            <div class="flex items-center gap-3.5 min-w-0">
-              ${renderAppIcon(app, 'w-16 h-16 text-lg')}
-              
-              <div class="min-w-0">
-                <div class="flex items-center gap-1.5">
-                  <h3 class="font-bold text-brand-charcoal text-base truncate group-hover:text-brand-olive transition">${app.name}</h3>
-                  <span class="text-[10px] font-bold px-1.5 py-0.5 rounded bg-brand-sky text-brand-olive shrink-0">${app.type}</span>
+            <a href="#" class="flex items-center gap-3 group">
+                <img src="./assets/brand/ServiTecStore.webp"
+                     alt="Logo Servitec Gamarra"
+                     class="w-11 h-11 rounded-xl object-contain bg-pureWhite border border-primary/15 p-1 shadow-sm group-hover:border-primary transition-colors"
+                     onerror="this.onerror=null; this.style.display='none';">
+                <div>
+                    <span class="font-display font-bold text-lg sm:text-xl text-charcoal tracking-tight block leading-tight">Servitec Gamarra</span>
+                    <span class="text-xs font-semibold text-primary uppercase tracking-wider block">App Store &amp; Hub</span>
                 </div>
-                <p class="text-xs text-slate-500 truncate mt-0.5">${app.tagline}</p>
-                <div class="flex items-center gap-2 mt-1.5 text-[11px] text-slate-400 font-medium">
-                  <span>${app.category}</span>
-                  <span>•</span>
-                  <span>${app.size}</span>
+            </a>
+
+            <!-- Buscador Desktop -->
+            <div class="hidden md:flex items-center flex-1 max-w-md mx-8">
+                <div class="relative w-full">
+                    <span class="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-primary">
+                        <i data-lucide="search" class="w-4 h-4"></i>
+                    </span>
+                    <input type="text" id="searchInput" placeholder="Buscar apps, landings, documentos..." 
+                        class="w-full pl-10 pr-4 py-2.5 bg-skyTech/80 border border-primary/20 rounded-xl text-sm text-charcoal placeholder-charcoal/50 focus:outline-none focus:bg-pureWhite focus:border-accent focus:ring-1 focus:ring-accent transition-all">
                 </div>
-              </div>
             </div>
 
-            <a href="${app.downloadUrl}" target="_blank" rel="noopener noreferrer" onclick="event.stopPropagation()"
-               class="shrink-0 bg-brand-sky group-hover:bg-brand-orange text-brand-olive group-hover:text-white font-bold text-xs px-4 py-2 rounded-full transition">
-              ${actionLabel}
-            </a>
-          </article>
-        `;
-      }).join('');
-    }
-
-    // Abrir Ficha de App (Modal)
-    function openAppModal(appId) {
-      const app = APPS_CATALOG.find(a => a.id === appId);
-      if (!app) return;
-      activeModalApp = app;
-
-      // Actualizar URL hash sin recargar (permite compartir enlace directo)
-      history.replaceState(null, '', `#app=${app.id}`);
-
-      document.getElementById('modalIcon').outerHTML = renderAppIcon(app, 'w-14 h-14 text-lg').replace('<div', '<div id="modalIcon"').replace('<img', '<img id="modalIcon"');
-      document.getElementById('modalTitle').textContent = app.name;
-      document.getElementById('modalBadge').textContent = app.type;
-      document.getElementById('modalCategory').textContent = `${app.category} • Servitec Gamarra`;
-      document.getElementById('modalVersion').textContent = app.version;
-      document.getElementById('modalSize').textContent = app.size;
-      document.getElementById('modalPlatform').textContent = app.platform;
-      document.getElementById('modalDescription').textContent = app.description;
-      document.getElementById('modalUpdated').textContent = `Act. ${app.updated}`;
-      document.getElementById('modalChangelog').textContent = app.changelog;
-
-      // Renderizar tarjetas de vista previa / highlights en el carrusel horizontal
-      const screenshotsContainer = document.getElementById('modalScreenshots');
-      screenshotsContainer.innerHTML = app.highlights.map((text, idx) => `
-        <div class="w-56 shrink-0 rounded-2xl bg-gradient-to-br from-brand-sky to-white border border-brand-sky p-4 flex flex-col justify-between gap-4">
-          <div class="flex items-center justify-between">
-            <span class="w-6 h-6 rounded-full bg-brand-olive text-white text-xs font-bold flex items-center justify-center">${idx + 1}</span>
-            <span class="text-[10px] font-bold uppercase tracking-wider text-slate-400">${app.name}</span>
-          </div>
-          <p class="text-xs font-semibold text-brand-charcoal leading-snug">${text}</p>
+            <!-- Badge de Estado -->
+            <div class="flex items-center gap-3">
+                <span class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full text-xs font-semibold bg-charcoal text-pureWhite shadow-sm">
+                    <span class="w-2 h-2 rounded-full bg-accent animate-pulse"></span>
+                    Producción Activa
+                </span>
+            </div>
         </div>
-      `).join('');
 
-      // Mostrar/ocultar guía de instalación APK
-      const installGuide = document.getElementById('androidInstallGuide');
-      const downloadBtn = document.getElementById('modalDownloadBtn');
-      const downloadLabel = document.getElementById('modalDownloadLabel');
+        <!-- Buscador Mobile -->
+        <div class="md:hidden px-4 pb-3 pt-1 border-t border-primary/10 bg-pureWhite">
+            <div class="relative w-full">
+                <span class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-primary">
+                    <i data-lucide="search" class="w-4 h-4"></i>
+                </span>
+                <input type="text" id="searchInputMobile" placeholder="Buscar apps, landings, documentos..." 
+                    class="w-full pl-10 pr-4 py-2 bg-skyTech/80 border border-primary/20 rounded-xl text-sm text-charcoal placeholder-charcoal/50 focus:outline-none focus:border-accent focus:ring-1 focus:ring-accent transition-all">
+            </div>
+        </div>
+    </header>
 
-      downloadBtn.href = app.downloadUrl;
-      if (app.type === 'WEB') {
-        installGuide.classList.add('hidden');
-        downloadLabel.textContent = 'Abrir Aplicación Web';
-      } else {
-        installGuide.classList.remove('hidden');
-        downloadLabel.textContent = 'Descargar APK';
-      }
+    <!-- CONTENIDO PRINCIPAL -->
+    <main class="flex-1 max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-8">
+        
+        <!-- Hero Banner de Alto Contraste -->
+        <section class="mb-8">
+            <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-6 bg-primary text-pureWhite p-6 sm:p-8 rounded-2xl shadow-md border border-charcoal/10">
+                <div>
+                    <span class="inline-block text-xs font-semibold uppercase tracking-wider text-skyTech/80 mb-1">
+                        Ingeniería Informática &amp; Soluciones Digitales
+                    </span>
+                    <h1 class="font-display font-bold text-2xl sm:text-3xl text-pureWhite mb-2">
+                        Repositorio Oficial de Ingeniería
+                    </h1>
+                    <p class="text-skyTech/90 text-sm sm:text-base max-w-2xl leading-relaxed">
+                        Descarga directa de APKs optimizadas, documentación técnica y accesos rápidos a nuestros desarrollos mientras completan sus procesos oficiales en Google Play Store.
+                    </p>
+                </div>
+                <div class="flex-shrink-0">
+                    <div class="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl bg-charcoal text-pureWhite text-xs font-semibold border border-pureWhite/15 shadow-sm">
+                        <i data-lucide="shield-check" class="w-4 h-4 text-accent"></i>
+                        Binarios Verificados
+                    </div>
+                </div>
+            </div>
+        </section>
 
-      const modal = document.getElementById('appModal');
-      modal.classList.remove('hidden');
-      modal.classList.add('flex');
-      document.body.style.overflow = 'hidden';
-    }
+        <!-- Pestañas de Categorías -->
+        <section class="mb-7">
+            <div id="categoryTabs" class="flex items-center gap-2.5 overflow-x-auto pb-2 scrollbar-none">
+                <button data-category="todos" class="category-tab px-4 py-2.5 rounded-xl text-sm font-semibold whitespace-nowrap transition-all bg-primary text-pureWhite shadow-sm">
+                    Todos los Proyectos
+                </button>
+                <button data-category="Apps Android" class="category-tab px-4 py-2.5 rounded-xl text-sm font-semibold whitespace-nowrap transition-all bg-pureWhite text-charcoal/80 border border-primary/15 hover:border-primary hover:text-charcoal">
+                    Apps Android
+                </button>
+                <button data-category="Web & Landings" class="category-tab px-4 py-2.5 rounded-xl text-sm font-semibold whitespace-nowrap transition-all bg-pureWhite text-charcoal/80 border border-primary/15 hover:border-primary hover:text-charcoal">
+                    Web &amp; Landings
+                </button>
+                <button data-category="Documentos" class="category-tab px-4 py-2.5 rounded-xl text-sm font-semibold whitespace-nowrap transition-all bg-pureWhite text-charcoal/80 border border-primary/15 hover:border-primary hover:text-charcoal">
+                    Documentos
+                </button>
+            </div>
+        </section>
 
-    function closeAppModal() {
-      const modal = document.getElementById('appModal');
-      modal.classList.add('hidden');
-      modal.classList.remove('flex');
-      document.body.style.overflow = '';
-      history.replaceState(null, '', window.location.pathname);
-    }
+        <!-- Cuadrícula de Proyectos -->
+        <section>
+            <div id="catalogGrid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                <!-- Tarjetas generadas dinámicamente desde catalog.json -->
+            </div>
 
-    function closeModalOnBackdrop(event) {
-      if (event.target.id === 'appModal') {
-        closeAppModal();
-      }
-    }
+            <!-- Estado Vacío de Búsqueda -->
+            <div id="emptyState" class="hidden text-center py-16 px-4 bg-pureWhite rounded-2xl border border-primary/15 shadow-sm my-6">
+                <div class="w-16 h-16 bg-skyTech text-primary rounded-2xl flex items-center justify-center mx-auto mb-4">
+                    <i data-lucide="folder-search" class="w-8 h-8"></i>
+                </div>
+                <h3 class="font-display font-bold text-lg text-charcoal mb-1">No encontramos coincidencias</h3>
+                <p class="text-charcoal/65 text-sm max-w-sm mx-auto mb-6">Prueba con otro término de búsqueda o vuelve a mostrar todo el catálogo.</p>
+                <button id="resetFilters" class="px-5 py-2.5 rounded-xl bg-accent text-white text-sm font-semibold hover:bg-accentHover transition-colors shadow-sm">
+                    Ver todos los proyectos
+                </button>
+            </div>
+        </section>
 
-    // Compartir enlace directo de la app
-    async function shareCurrentApp() {
-      if (!activeModalApp) return;
-      const shareUrl = `${window.location.origin}${window.location.pathname}#app=${activeModalApp.id}`;
-      const shareData = {
-        title: `${activeModalApp.name} — SerTec Store`,
-        text: `Descarga ${activeModalApp.name}: ${activeModalApp.tagline}`,
-        url: shareUrl
-      };
+    </main>
 
-      if (navigator.share) {
-        try {
-          await navigator.share(shareData);
-          return;
-        } catch (err) {}
-      }
+    <!-- FOOTER -->
+    <footer class="bg-charcoal text-pureWhite mt-12 py-8">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-center sm:text-left">
+            <div class="flex items-center gap-3">
+                <img src="./assets/brand/ServiTecStore.webp"
+                     alt="Logo Servitec Gamarra"
+                     class="w-11 h-11 rounded-xl object-contain bg-pureWhite border border-primary/15 p-1 shadow-sm group-hover:border-primary transition-colors"
+                     onerror="this.onerror=null; this.style.display='none';">
+                <span class="font-display font-bold text-pureWhite text-sm">Servitec Gamarra — Ingeniería Informática</span>
+            </div>
+            <p class="text-xs text-skyTech/70">
+                Soluciones digitales de alto rendimiento. Todos los derechos reservados.
+            </p>
+        </div>
+    </footer>
 
-      // Fallback: copiar al portapapeles
-      navigator.clipboard.writeText(shareUrl);
-      const toast = document.getElementById('toast');
-      toast.classList.remove('hidden');
-      setTimeout(() => toast.classList.add('hidden'), 2500);
-    }
+    <!-- MODAL DE DETALLE TÉCNICO -->
+    <div id="detailModal" class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-charcoal/70 backdrop-blur-sm opacity-0 pointer-events-none">
+        <div id="modalContainer" class="bg-pureWhite w-full max-w-2xl rounded-2xl shadow-2xl border border-primary/20 overflow-hidden transform scale-95 max-h-[90vh] flex flex-col">
+            
+            <!-- Modal Header -->
+            <div class="p-6 border-b border-primary/15 flex items-start justify-between bg-skyTech/60">
+                <div class="flex items-center gap-4">
+                    <div id="modalIconWrapper" class="w-14 h-14 rounded-2xl flex items-center justify-center shadow-sm flex-shrink-0"></div>
+                    <div>
+                        <span id="modalCategory" class="text-xs font-bold text-primary uppercase tracking-wider block mb-0.5"></span>
+                        <h2 id="modalTitle" class="font-display font-bold text-xl text-charcoal"></h2>
+                    </div>
+                </div>
+                <button id="closeModal" class="w-9 h-9 rounded-xl bg-pureWhite border border-primary/15 text-charcoal hover:bg-charcoal hover:text-pureWhite flex items-center justify-center transition-colors">
+                    <i data-lucide="x" class="w-5 h-5"></i>
+                </button>
+            </div>
 
-    // Filtros por categoría
-    document.querySelectorAll('.category-pill').forEach(btn => {
-      btn.addEventListener('click', () => {
-        document.querySelectorAll('.category-pill').forEach(b => {
-          b.classList.remove('bg-brand-olive', 'text-white', 'font-semibold', 'shadow-sm');
-          b.classList.add('bg-brand-sky', 'text-brand-charcoal', 'font-medium');
+            <!-- Modal Body -->
+            <div class="p-6 overflow-y-auto space-y-6 flex-1">
+                <div>
+                    <h3 class="text-xs font-bold text-primary uppercase tracking-wider mb-2">¿Qué resuelve esta herramienta?</h3>
+                    <p id="modalDescription" class="text-charcoal/85 text-sm leading-relaxed"></p>
+                </div>
+
+                <!-- Especificaciones Técnicas -->
+                <div>
+                    <h3 class="text-xs font-bold text-primary uppercase tracking-wider mb-2">Ficha Técnica</h3>
+                    <div class="bg-skyTech/60 rounded-xl p-4 border border-primary/15 grid grid-cols-2 sm:grid-cols-4 gap-4 text-xs">
+                        <div>
+                            <span class="text-charcoal/60 block mb-0.5 font-medium">Versión</span>
+                            <span id="modalVersion" class="font-bold text-charcoal text-sm"></span>
+                        </div>
+                        <div>
+                            <span class="text-charcoal/60 block mb-0.5 font-medium">Peso</span>
+                            <span id="modalSize" class="font-bold text-charcoal text-sm"></span>
+                        </div>
+                        <div>
+                            <span class="text-charcoal/60 block mb-0.5 font-medium">Actualizado</span>
+                            <span id="modalDate" class="font-bold text-charcoal text-sm"></span>
+                        </div>
+                        <div>
+                            <span class="text-charcoal/60 block mb-0.5 font-medium">Entorno</span>
+                            <span id="modalPlatform" class="font-bold text-charcoal text-sm"></span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Guía de Instalación Android -->
+                <div id="androidGuide" class="hidden bg-skyTech border-l-4 border-accent rounded-r-xl p-4 text-xs space-y-2">
+                    <div class="flex items-center gap-2 font-bold text-charcoal">
+                        <i data-lucide="smartphone" class="w-4 h-4 text-accent"></i>
+                        Instalación rápida en Android (3 pasos)
+                    </div>
+                    <ol class="list-decimal list-inside text-charcoal/85 space-y-1 pl-1">
+                        <li>Pulsa el botón naranja <strong>Descargar APK</strong> para bajar el instalador desde GitHub Releases.</li>
+                        <li>Abre el archivo descargado desde la barra de notificaciones de tu teléfono.</li>
+                        <li>Si Android solicita permiso, toca <strong>"Configuración"</strong> &rarr; activa <strong>"Permitir desde esta fuente"</strong> y pulsa <strong>"Instalar"</strong>.</li>
+                    </ol>
+                </div>
+            </div>
+
+            <!-- Modal Footer / CTA -->
+            <div class="p-5 border-t border-primary/15 bg-skyTech/40 flex items-center justify-end gap-3">
+                <button id="closeModalBtn" class="px-5 py-2.5 rounded-xl bg-pureWhite border border-primary/20 text-charcoal text-sm font-semibold hover:bg-skyTech transition-colors">
+                    Cerrar
+                </button>
+                <a id="modalDownloadBtn" href="#" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 px-6 py-2.5 rounded-xl bg-accent text-white text-sm font-semibold hover:bg-accentHover shadow-sm transition-all">
+                    <i id="modalDownloadIcon" data-lucide="download" class="w-4 h-4"></i>
+                    <span id="modalDownloadText">Descargar APK</span>
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            let catalogData = [];
+            let currentCategory = 'todos';
+            let searchQuery = '';
+
+            const catalogGrid = document.getElementById('catalogGrid');
+            const emptyState = document.getElementById('emptyState');
+            const searchInput = document.getElementById('searchInput');
+            const searchInputMobile = document.getElementById('searchInputMobile');
+            const categoryTabs = document.querySelectorAll('.category-tab');
+            const resetFiltersBtn = document.getElementById('resetFilters');
+
+            const detailModal = document.getElementById('detailModal');
+            const modalContainer = document.getElementById('modalContainer');
+            const closeModal = document.getElementById('closeModal');
+            const closeModalBtn = document.getElementById('closeModalBtn');
+            const modalIconWrapper = document.getElementById('modalIconWrapper');
+            const modalCategory = document.getElementById('modalCategory');
+            const modalTitle = document.getElementById('modalTitle');
+            const modalDescription = document.getElementById('modalDescription');
+            const modalVersion = document.getElementById('modalVersion');
+            const modalSize = document.getElementById('modalSize');
+            const modalDate = document.getElementById('modalDate');
+            const modalPlatform = document.getElementById('modalPlatform');
+            const androidGuide = document.getElementById('androidGuide');
+            const modalDownloadBtn = document.getElementById('modalDownloadBtn');
+            const modalDownloadText = document.getElementById('modalDownloadText');
+            const modalDownloadIcon = document.getElementById('modalDownloadIcon');
+
+            // Genera un icono vectorial limpio y con contraste según el tipo de proyecto
+            function getAppBadgeVisual(item) {
+                if (item.icon) {
+                    return `<img src="${item.icon}" alt="${item.title}" class="w-14 h-14 rounded-2xl object-cover border border-primary/20 shadow-sm">`;
+                }
+                const initials = item.title.substring(0, 2).toUpperCase();
+                if (item.type === 'android-apk') {
+                    return `
+                        <div class="w-14 h-14 rounded-2xl bg-primary text-pureWhite flex flex-col items-center justify-center shadow-sm relative overflow-hidden">
+                            <span class="font-display font-bold text-lg tracking-tight">${initials}</span>
+                            <span class="w-2 h-2 rounded-full bg-accent absolute top-2 right-2"></span>
+                        </div>
+                    `;
+                }
+                if (item.type === 'web-landing') {
+                    return `
+                        <div class="w-14 h-14 rounded-2xl bg-charcoal text-pureWhite flex items-center justify-center shadow-sm">
+                            <i data-lucide="globe" class="w-7 h-7 text-accent"></i>
+                        </div>
+                    `;
+                }
+                return `
+                    <div class="w-14 h-14 rounded-2xl bg-skyTech text-primary border border-primary/25 flex items-center justify-center shadow-sm">
+                        <i data-lucide="file-text" class="w-7 h-7"></i>
+                    </div>
+                `;
+            }
+
+            async function loadCatalog() {
+                try {
+                    const response = await fetch('./catalog.json');
+                    if (!response.ok) throw new Error('No se encontró catalog.json en la raíz');
+                    catalogData = await response.json();
+                    renderCatalog();
+                } catch (error) {
+                    console.error(error);
+                    catalogGrid.innerHTML = `
+                        <div class="col-span-full bg-pureWhite rounded-2xl p-8 border-2 border-accent/40 shadow-sm text-center">
+                            <h3 class="font-display font-bold text-lg text-charcoal mb-2">Falta subir el archivo catalog.json a la raíz</h3>
+                            <p class="text-sm text-charcoal/75 max-w-lg mx-auto">
+                                Crea un archivo llamado <code class="bg-skyTech px-2 py-0.5 rounded font-semibold text-primary">catalog.json</code> junto a este <code class="bg-skyTech px-2 py-0.5 rounded font-semibold text-primary">index.html</code> en tu repositorio de GitHub para mostrar tus aplicaciones aquí.
+                            </p>
+                        </div>
+                    `;
+                }
+            }
+
+            function renderCatalog() {
+                const filtered = catalogData.filter(item => {
+                    const matchesCategory = currentCategory === 'todos' || item.category === currentCategory;
+                    const matchesSearch = item.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
+                                          item.subtitle.toLowerCase().includes(searchQuery.toLowerCase()) ||
+                                          item.description.toLowerCase().includes(searchQuery.toLowerCase());
+                    return matchesCategory && matchesSearch;
+                });
+
+                if (filtered.length === 0) {
+                    catalogGrid.innerHTML = '';
+                    emptyState.classList.remove('hidden');
+                    return;
+                }
+
+                emptyState.classList.add('hidden');
+                catalogGrid.innerHTML = filtered.map(item => {
+                    let badgeStyle = 'bg-primary text-pureWhite';
+                    let ctaLabel = 'Descargar APK';
+                    let ctaIcon = 'download';
+
+                    if (item.type === 'web-landing') {
+                        badgeStyle = 'bg-charcoal text-pureWhite';
+                        ctaLabel = 'Visitar Web';
+                        ctaIcon = 'external-link';
+                    } else if (item.type === 'document') {
+                        badgeStyle = 'bg-skyTech text-primary border border-primary/30';
+                        ctaLabel = 'Descargar PDF';
+                        ctaIcon = 'file-text';
+                    }
+
+                    return `
+                        <article class="project-card rounded-2xl p-6 flex flex-col justify-between cursor-pointer group" data-id="${item.id}">
+                            <div>
+                                <div class="flex items-start justify-between gap-4 mb-4">
+                                    <div class="group-hover:scale-105 transition-transform">
+                                        ${getAppBadgeVisual(item)}
+                                    </div>
+                                    <span class="px-3 py-1 rounded-full text-xs font-semibold tracking-wide ${badgeStyle}">
+                                        ${item.category}
+                                    </span>
+                                </div>
+
+                                <h3 class="font-display font-bold text-xl text-charcoal group-hover:text-primary transition-colors mb-1">
+                                    ${item.title}
+                                </h3>
+                                <p class="text-xs font-semibold text-primary mb-2.5">
+                                    ${item.subtitle}
+                                </p>
+                                <p class="text-charcoal/75 text-sm leading-relaxed line-clamp-3 mb-5">
+                                    ${item.description}
+                                </p>
+                            </div>
+
+                            <div class="pt-4 border-t border-primary/10 flex items-center justify-between gap-3">
+                                <div class="text-xs">
+                                    <span class="font-bold text-charcoal block">${item.version}</span>
+                                    <span class="text-charcoal/60 font-medium">${item.size}</span>
+                                </div>
+
+                                <div class="flex items-center gap-2">
+                                    <span class="text-xs font-semibold text-primary group-hover:underline px-2 py-1.5">
+                                        Detalles
+                                    </span>
+                                    <a href="${item.downloadUrl}" target="_blank" rel="noopener noreferrer"
+                                       onclick="event.stopPropagation();"
+                                       class="inline-flex items-center gap-1.5 px-4 py-2 rounded-xl bg-accent hover:bg-accentHover text-white text-xs font-semibold shadow-sm transition-colors">
+                                        <i data-lucide="${ctaIcon}" class="w-3.5 h-3.5"></i>
+                                        ${ctaLabel}
+                                    </a>
+                                </div>
+                            </div>
+                        </article>
+                    `;
+                }).join('');
+
+                if (window.lucide) lucide.createIcons();
+
+                document.querySelectorAll('.project-card').forEach(card => {
+                    card.addEventListener('click', () => {
+                        const project = catalogData.find(p => p.id === card.getAttribute('data-id'));
+                        if (project) openModal(project);
+                    });
+                });
+            }
+
+            function openModal(project) {
+                modalIconWrapper.innerHTML = getAppBadgeVisual(project);
+                modalCategory.textContent = project.category;
+                modalTitle.textContent = project.title;
+                modalDescription.textContent = project.description;
+                modalVersion.textContent = project.version;
+                modalSize.textContent = project.size;
+                modalDate.textContent = project.updatedAt;
+                modalPlatform.textContent = project.type === 'android-apk'
+                    ? 'Android 8.0+'
+                    : (project.type === 'web-landing' ? 'Navegador Web' : 'PDF');
+
+                if (project.type === 'android-apk') {
+                    androidGuide.classList.remove('hidden');
+                    modalDownloadText.textContent = `Descargar APK (${project.size})`;
+                    modalDownloadIcon.setAttribute('data-lucide', 'download');
+                } else if (project.type === 'web-landing') {
+                    androidGuide.classList.add('hidden');
+                    modalDownloadText.textContent = 'Visitar Sitio Web';
+                    modalDownloadIcon.setAttribute('data-lucide', 'external-link');
+                } else {
+                    androidGuide.classList.add('hidden');
+                    modalDownloadText.textContent = 'Descargar Documento';
+                    modalDownloadIcon.setAttribute('data-lucide', 'file-text');
+                }
+
+                modalDownloadBtn.href = project.downloadUrl;
+                detailModal.classList.remove('opacity-0', 'pointer-events-none');
+                modalContainer.classList.remove('scale-95');
+                document.body.style.overflow = 'hidden';
+                if (window.lucide) lucide.createIcons();
+            }
+
+            function closeModalFunc() {
+                detailModal.classList.add('opacity-0', 'pointer-events-none');
+                modalContainer.classList.add('scale-95');
+                document.body.style.overflow = '';
+            }
+
+            closeModal.addEventListener('click', closeModalFunc);
+            closeModalBtn.addEventListener('click', closeModalFunc);
+            detailModal.addEventListener('click', (e) => { if (e.target === detailModal) closeModalFunc(); });
+            document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeModalFunc(); });
+
+            function handleSearch(e) {
+                searchQuery = e.target.value;
+                if (searchInput.value !== searchQuery) searchInput.value = searchQuery;
+                if (searchInputMobile.value !== searchQuery) searchInputMobile.value = searchQuery;
+                renderCatalog();
+            }
+
+            searchInput.addEventListener('input', handleSearch);
+            searchInputMobile.addEventListener('input', handleSearch);
+
+            categoryTabs.forEach(tab => {
+                tab.addEventListener('click', () => {
+                    categoryTabs.forEach(t => {
+                        t.classList.remove('bg-primary', 'text-pureWhite', 'shadow-sm');
+                        t.classList.add('bg-pureWhite', 'text-charcoal/80', 'border', 'border-primary/15');
+                    });
+                    tab.classList.add('bg-primary', 'text-pureWhite', 'shadow-sm');
+                    tab.classList.remove('bg-pureWhite', 'text-charcoal/80', 'border', 'border-primary/15');
+                    currentCategory = tab.getAttribute('data-category');
+                    renderCatalog();
+                });
+            });
+
+            resetFiltersBtn.addEventListener('click', () => {
+                currentCategory = 'todos';
+                searchQuery = '';
+                searchInput.value = '';
+                searchInputMobile.value = '';
+                categoryTabs.forEach(t => {
+                    if (t.getAttribute('data-category') === 'todos') {
+                        t.classList.add('bg-primary', 'text-pureWhite', 'shadow-sm');
+                        t.classList.remove('bg-pureWhite', 'text-charcoal/80', 'border', 'border-primary/15');
+                    } else {
+                        t.classList.remove('bg-primary', 'text-pureWhite', 'shadow-sm');
+                        t.classList.add('bg-pureWhite', 'text-charcoal/80', 'border', 'border-primary/15');
+                    }
+                });
+                renderCatalog();
+            });
+
+            if (window.lucide) lucide.createIcons();
+            loadCatalog();
         });
-        btn.classList.remove('bg-brand-sky', 'text-brand-charcoal', 'font-medium');
-        btn.classList.add('bg-brand-olive', 'text-white', 'font-semibold', 'shadow-sm');
-
-        currentCategory = btn.dataset.category;
-        renderAppsGrid();
-      });
-    });
-
-    // Navegación móvil inferior
-    function mobileNav(category, btnEl) {
-      document.querySelectorAll('.mobile-nav-btn').forEach(b => {
-        b.classList.remove('text-brand-olive', 'font-bold');
-        b.classList.add('text-slate-500', 'font-medium');
-      });
-      btnEl.classList.remove('text-slate-500', 'font-medium');
-      btnEl.classList.add('text-brand-olive', 'font-bold');
-
-      const pill = document.querySelector(`.category-pill[data-category="${category}"]`);
-      if (pill) pill.click();
-      window.scrollTo({ top: 0, behavior: 'smooth' });
-    }
-
-    // Sincronizar buscadores (Desktop y Móvil)
-    const searchDesktop = document.getElementById('searchInputDesktop');
-    const searchMobile = document.getElementById('searchInputMobile');
-
-    function handleSearch(e) {
-      currentSearch = e.target.value;
-      if (searchDesktop && e.target !== searchDesktop) searchDesktop.value = currentSearch;
-      if (searchMobile && e.target !== searchMobile) searchMobile.value = currentSearch;
-      renderAppsGrid();
-    }
-
-    if (searchDesktop) searchDesktop.addEventListener('input', handleSearch);
-    if (searchMobile) searchMobile.addEventListener('input', handleSearch);
-
-    function resetFilters(e) {
-      if (e) e.preventDefault();
-      currentSearch = '';
-      if (searchDesktop) searchDesktop.value = '';
-      if (searchMobile) searchMobile.value = '';
-      const allPill = document.querySelector('.category-pill[data-category="all"]');
-      if (allPill) allPill.click();
-    }
-
-    // Cerrar modal con tecla Escape
-    document.addEventListener('keydown', (e) => {
-      if (e.key === 'Escape') closeAppModal();
-    });
-
-    // Inicialización y soporte para deep-linking (#app=id)
-    window.addEventListener('DOMContentLoaded', () => {
-      renderFeaturedApp();
-      renderAppsGrid();
-
-      const hash = window.location.hash;
-      if (hash.startsWith('#app=')) {
-        const appId = hash.replace('#app=', '');
-        openAppModal(appId);
-      }
-    });
-  </script>
+    </script>
 </body>
 </html>
